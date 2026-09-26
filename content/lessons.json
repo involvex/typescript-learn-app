@@ -1,0 +1,1074 @@
+[
+  {
+    "analogy": "Like C# var/const: let = reassignable local, const = readonly reference. Forget var (like old VB quirks).",
+    "analogyDe": "Wie C# var/const: let = veränderbar, const = schreibgeschützt (Referenz). var vergessen (wie alte VB-Marotten).",
+    "audio": "let is for values that change. const is the default. Use const unless you reassign. var is legacy, avoid it.",
+    "audioDe": "let für Werte, die sich ändern. const ist Standard. const nutzen, außer du weist neu zu. var ist veraltet.",
+    "codeAfter": "const name = \"Ada\"; // string inferred\nlet count = 0;\ncount = count + 1;\nconst tags: string[] = [\"ts\", \"expo\"];",
+    "codeBefore": "let name = \"Ada\";\nconst PI = 3.14;\n// PI = 3; // Error: readonly\nvar old = true; // legacy, avoid",
+    "id": "js-let-const",
+    "keyPoints": [
+      "Default to const; use let only when reassigning.",
+      "const prevents reassignment, not deep immutability.",
+      "var is function-scoped legacy — never use in new code."
+    ],
+    "keyPointsDe": [
+      "Standard: const; let nur bei Neuzuweisung.",
+      "const verhindert Neuzuweisung, nicht tiefe Unveränderlichkeit.",
+      "var ist veraltet (function-scope) — meiden."
+    ],
+    "level": 1,
+    "minutes": 3,
+    "quiz": [
+      {
+        "answer": 1,
+        "explain": "Reassignment of a const binding is a compile error.",
+        "explainDe": "Neuzuweisung an const ist ein Compile-Fehler.",
+        "options": [
+          "It logs undefined",
+          "Compile error: cannot assign to PI",
+          "It silently works",
+          "It throws at runtime only"
+        ],
+        "optionsDe": [
+          "Gibt undefined aus",
+          "Compile-Fehler: PI ist const",
+          "Funktioniert still",
+          "Wirft nur zur Laufzeit"
+        ],
+        "q": "const PI = 3.14; PI = 3; — what happens in TS?",
+        "qDe": "const PI = 3.14; PI = 3; — was passiert in TS?"
+      }
+    ],
+    "source": "javascript/ overview",
+    "title": "let, const (and forget var)",
+    "titleDe": "let, const (und var vergessen)",
+    "tldr": "Use const by default, let when you reassign. Never var.",
+    "tldrDe": "Standard const, let bei Neuzuweisung. Nie var.",
+    "track": "js-crash"
+  },
+  {
+    "analogy": "Like C# lambdas (x => x+1) but function is an expression everywhere; callbacks are like C# delegates.",
+    "analogyDe": "Wie C#-Lambdas, aber Funktionen sind überall Ausdrücke; Callbacks sind wie Delegates.",
+    "audio": "Arrow functions are short callbacks. One expression means implicit return. this behaves lexically, unlike C# this.",
+    "audioDe": "Arrow-Funktionen sind kurze Callbacks. Ein Ausdruck heißt implizites return. this ist lexikalisch, anders als in C#.",
+    "codeAfter": "const add = (a: number, b: number): number => a + b;\nconst names = [\"a\", \"bb\"];\nconst lens = names.map((n) => n.length); // [1, 2]",
+    "codeBefore": "function add(a, b) { return a + b; }\nconst add2 = (a, b) => a + b;\nsetTimeout(() => console.log(\"hi\"), 100);",
+    "id": "js-functions-arrows",
+    "keyPoints": [
+      "Arrow with single expression returns implicitly.",
+      "Callbacks replace C# delegates/events in JS style.",
+      "function vs arrow differ mainly in this binding."
+    ],
+    "keyPointsDe": [
+      "Arrow mit einem Ausdruck hat implizites return.",
+      "Callbacks ersetzen Delegates/Events im JS-Stil.",
+      "function vs Arrow unterscheiden sich v.a. bei this."
+    ],
+    "level": 1,
+    "minutes": 4,
+    "quiz": [
+      {
+        "answer": 1,
+        "explain": "Single-expression arrows return the value.",
+        "explainDe": "Arrows mit einem Ausdruck geben den Wert zurück.",
+        "options": ["undefined", "[1, 2]", "[\"a\", \"bb\"]", "Error"],
+        "optionsDe": ["undefined", "[1, 2]", "[\"a\", \"bb\"]", "Fehler"],
+        "q": "What is [\"a\",\"bb\"].map(n => n.length)?",
+        "qDe": "Was ist [\"a\",\"bb\"].map(n => n.length)?"
+      }
+    ],
+    "source": "javascript/functions",
+    "title": "Functions & arrows",
+    "titleDe": "Funktionen & Arrows",
+    "tldr": "Arrows are lambdas; single expression = implicit return.",
+    "tldrDe": "Arrows sind Lambdas; ein Ausdruck = implizites return.",
+    "track": "js-crash"
+  },
+  {
+    "analogy": "Arrays like List<T>, objects like anonymous types / Dictionary. Destructuring like C# deconstruction.",
+    "analogyDe": "Arrays wie List<T>, Objekte wie anonyme Typen/Dictionary. Destructuring wie Deconstruction in C#.",
+    "audio": "Arrays use map filter find. Objects are dictionaries with dot access. Destructure to pull fields out in one line.",
+    "audioDe": "Arrays mit map, filter, find. Objekte sind Dictionaries mit Punktzugriff. Destructuring holt Felder in einer Zeile.",
+    "codeAfter": "const user = { name: \"Ada\", age: 36 };\nconst { name, age } = user;\nconst adults = [{age: 20}, {age: 15}].filter(u => u.age >= 18);",
+    "codeBefore": "const arr = [1, 2, 3];\nconst doubled = arr.map((x) => x * 2); // [2,4,6]\nconst obj = { name: \"Ada\", age: 36 };\nconsole.log(obj.name);",
+    "id": "js-arrays-objects",
+    "keyPoints": [
+      "map/filter/find return new arrays — no mutation.",
+      "Objects: obj.key or obj[\"key\"].",
+      "Destructure: const { name } = user."
+    ],
+    "keyPointsDe": [
+      "map/filter/find geben neue Arrays zurück.",
+      "Objekte: obj.key oder obj[\"key\"].",
+      "Destructuring: const { name } = user."
+    ],
+    "level": 1,
+    "minutes": 4,
+    "quiz": [
+      {
+        "answer": 0,
+        "explain": "map builds a new array; original untouched.",
+        "explainDe": "map baut ein neues Array; Original bleibt.",
+        "options": [
+          "[2,4,6], arr still [1,2,3]",
+          "[1,2,3]",
+          "Error",
+          "undefined"
+        ],
+        "optionsDe": [
+          "[2,4,6], arr bleibt [1,2,3]",
+          "[1,2,3]",
+          "Fehler",
+          "undefined"
+        ],
+        "q": "[1,2,3].map(x => x*2) gives…?",
+        "qDe": "[1,2,3].map(x => x*2) ergibt…?"
+      }
+    ],
+    "source": "javascript/ arrays+objects",
+    "title": "Arrays, objects, destructuring",
+    "titleDe": "Arrays, Objekte, Destructuring",
+    "tldr": "map/filter/find + object destructuring = 80% of JS reading.",
+    "tldrDe": "map/filter/find + Destructuring = 80% des JS-Lesens.",
+    "track": "js-crash"
+  },
+  {
+    "analogy": "Like C# async/await with Task<T> — a Promise<T> is a future value.",
+    "analogyDe": "Wie C# async/await mit Task<T> — Promise<T> ist ein zukünftiger Wert.",
+    "audio": "Promises are futures. await unwraps them. Always handle rejection with try catch.",
+    "audioDe": "Promises sind Futures. await entpackt sie. Fehler immer mit try/catch behandeln.",
+    "codeAfter": "async function load(): Promise<string> {\n  const res = await fetch(\"https://example.com\");\n  return await res.text();\n}",
+    "codeBefore": "fetch(\"https://example.com\")\n  .then((r) => r.text())\n  .then((t) => console.log(t))\n  .catch((e) => console.error(e));",
+    "id": "js-promises",
+    "keyPoints": [
+      "await only inside async functions (or top-level modules).",
+      "Unhandled rejections crash logic — use try/catch.",
+      "Promise.all for parallel work, like Task.WhenAll."
+    ],
+    "keyPointsDe": [
+      "await nur in async-Funktionen (oder Top-Level-Modulen).",
+      "Unbehandelte Rejections sind Logikfehler — try/catch.",
+      "Promise.all für parallel, wie Task.WhenAll."
+    ],
+    "level": 2,
+    "minutes": 4,
+    "quiz": [
+      {
+        "answer": 2,
+        "explain": "await unwraps the fulfillment value.",
+        "explainDe": "await entpackt den Erfüllungswert.",
+        "options": [
+          "A Promise object",
+          "undefined",
+          "The string text",
+          "A Response forever"
+        ],
+        "optionsDe": [
+          "Ein Promise-Objekt",
+          "undefined",
+          "Der Text",
+          "Für immer Response"
+        ],
+        "q": "await (await fetch(u)).text() is…?",
+        "qDe": "await (await fetch(u)).text() ist…?"
+      }
+    ],
+    "source": "javascript/promises",
+    "title": "Promises & async/await",
+    "titleDe": "Promises & async/await",
+    "tldr": "Promise<T> is Task<T>; await unwraps it.",
+    "tldrDe": "Promise<T> ist Task<T>; await entpackt.",
+    "track": "js-crash"
+  },
+  {
+    "analogy": "Like C# namespaces/assemblies: import {x} from './file' ~ using + assembly reference.",
+    "analogyDe": "Wie C#-Namespaces/Assemblies: import ~ using + Referenz.",
+    "audio": "Each file is a module. Named exports versus default export. Agents add imports automatically, check the path.",
+    "audioDe": "Jede Datei ist ein Modul. Benannte Exporte vs. Default. Agents fügen Imports automatisch hinzu, Pfad prüfen.",
+    "codeAfter": "// math.ts\nexport const add = (a: number, b: number) => a + b;\n// app.ts\nimport { add } from \"./math\";",
+    "codeBefore": "// named vs default\nexport function a() {}\nexport default function b() {}\nimport b, { a } from \"./mod\";",
+    "id": "js-modules",
+    "keyPoints": [
+      "Prefer named exports; default exports hide names.",
+      "Paths are relative: ./x, ../y.",
+      "Circular imports = smell; same as in C#."
+    ],
+    "keyPointsDe": [
+      "Benannte Exporte bevorzugen; Default versteckt Namen.",
+      "Pfade relativ: ./x, ../y.",
+      "Zirkuläre Imports = Smell, wie in C#."
+    ],
+    "level": 1,
+    "minutes": 3,
+    "quiz": [
+      {
+        "answer": 0,
+        "explain": "Named import must match the export name.",
+        "explainDe": "Benannter Import muss dem Exportnamen entsprechen.",
+        "options": [
+          "import { add } from \"./math\"",
+          "import add from \"./math\"",
+          "import * as add from \"./math\"",
+          "require add"
+        ],
+        "optionsDe": [
+          "import { add } from \"./math\"",
+          "import add from \"./math\"",
+          "import * as add from \"./math\"",
+          "require add"
+        ],
+        "q": "math.ts has `export const add`. Correct import?",
+        "qDe": "math.ts hat `export const add`. Korrekter Import?"
+      }
+    ],
+    "source": "modules-reference/",
+    "title": "Modules: import/export",
+    "titleDe": "Module: import/export",
+    "tldr": "Prefer named exports; paths are relative files.",
+    "tldrDe": "Benannte Exporte; Pfade sind relative Dateien.",
+    "track": "js-crash"
+  },
+  {
+    "analogy": "Like C# static typing but with inference: var x = 5 infers int; same idea, less ceremony.",
+    "analogyDe": "Wie statische Typisierung in C#, aber mit Inferenz: weniger Zeremonie.",
+    "audio": "Everyday types: string, number, boolean, arrays, any versus unknown. Let inference do the work.",
+    "audioDe": "Alltagstypen: string, number, boolean, Arrays, any vs unknown. Inferenz arbeiten lassen.",
+    "codeAfter": "let s: string = \"hi\";\nlet n = 5; // number inferred\nlet list: number[] = [1, 2];\nlet u: unknown = JSON.parse(\"{}\");",
+    "codeBefore": "let s = \"hi\"; // string\nlet n: number = 5;\nlet ok: boolean = true;\n// let x: any = 1; // avoid any",
+    "id": "ts-everyday-types",
+    "keyPoints": [
+      "Annotate where inference is unclear; else let it infer.",
+      "number covers int+double (like JS).",
+      "unknown = type-safe any: must narrow before use."
+    ],
+    "keyPointsDe": [
+      "Annotieren, wo Inferenz unklar; sonst inferieren lassen.",
+      "number deckt int+double ab.",
+      "unknown = sicheres any: erst narrowing, dann nutzen."
+    ],
+    "level": 1,
+    "minutes": 4,
+    "quiz": [
+      {
+        "answer": 2,
+        "explain": "any disables checking; unknown forces narrowing.",
+        "explainDe": "any schaltet Prüfung ab; unknown erzwingt Narrowing.",
+        "options": [
+          "They are identical",
+          "unknown is slower",
+          "any skips checks, unknown requires narrowing",
+          "unknown is legacy"
+        ],
+        "optionsDe": [
+          "Identisch",
+          "unknown ist langsamer",
+          "any ohne Checks, unknown braucht Narrowing",
+          "unknown ist veraltet"
+        ],
+        "q": "any vs unknown?",
+        "qDe": "any vs unknown?"
+      }
+    ],
+    "source": "handbook-v2/Everyday Types",
+    "title": "Everyday types",
+    "titleDe": "Alltagstypen",
+    "tldr": "string/number/boolean + unknown over any.",
+    "tldrDe": "string/number/boolean + unknown statt any.",
+    "track": "ts-core"
+  },
+  {
+    "analogy": "interface ~ C# interface; type = alias incl. unions. Structs become object types.",
+    "analogyDe": "interface ~ C#-Interface; type = Alias inkl. Unions. Structs werden Objekttypen.",
+    "audio": "Use interface for object shapes agents extend. Use type for unions and helpers. They overlap a lot.",
+    "audioDe": "interface für Objektformen, type für Unions und Helfer. Viel Überlappung.",
+    "codeAfter": "interface User { id: string; name: string; }\ntype ID = string | number;\ntype Point = { x: number; y: number };",
+    "codeBefore": "interface User { id: string; }\ntype Admin = User & { level: number };\nconst u: User = { id: \"1\" };",
+    "id": "ts-interfaces-types",
+    "keyPoints": [
+      "interface extends well; type composes unions/intersections.",
+      "Agents use Pick/Omit/Partial on these.",
+      "readonly and ? mark immutability/optionality."
+    ],
+    "keyPointsDe": [
+      "interface gut erweiterbar; type gut kombinierbar.",
+      "Agents nutzen Pick/Omit/Partial darauf.",
+      "readonly und ? für unveränderlich/optional."
+    ],
+    "level": 2,
+    "minutes": 5,
+    "quiz": [
+      {
+        "answer": 0,
+        "explain": "& intersects: must satisfy both.",
+        "explainDe": "& schneidet: muss beides erfüllen.",
+        "options": [
+          "Object with id + level",
+          "Either id or level",
+          "Only methods",
+          "Error always"
+        ],
+        "optionsDe": [
+          "Objekt mit id + level",
+          "Entweder id oder level",
+          "Nur Methoden",
+          "Immer Fehler"
+        ],
+        "q": "type Admin = User & { level: number } means…?",
+        "qDe": "type Admin = User & { level: number } heißt…?"
+      }
+    ],
+    "source": "handbook-v2/Objects+Interfaces",
+    "title": "Interfaces vs type",
+    "titleDe": "Interfaces vs type",
+    "tldr": "interface for shapes, type for unions/composition.",
+    "tldrDe": "interface für Formen, type für Unions/Komposition.",
+    "track": "ts-core"
+  },
+  {
+    "analogy": "Like C# pattern matching (is, switch) but via typeof/in/instanceof checks.",
+    "analogyDe": "Wie Pattern Matching in C# (is, switch), aber mit typeof/in/instanceof.",
+    "audio": "Narrowing shrinks a union after a check. typeof for primitives, in for shapes, instanceof for classes.",
+    "audioDe": "Narrowing verkleinert eine Union nach Prüfung. typeof für primitive, in für Formen, instanceof für Klassen.",
+    "codeAfter": "function len(x: string | string[]) {\n  if (typeof x === \"string\") return x.length;\n  return x.length; // string[] here\n}",
+    "codeBefore": "type ID = string | number;\nfunction print(id: ID) {\n  if (typeof id === \"string\") console.log(id.toUpperCase());\n  else console.log(id.toFixed(2));\n}",
+    "id": "ts-narrowing",
+    "keyPoints": [
+      "After a check, TS knows the branch type.",
+      "Truthy checks narrow null/undefined away.",
+      "Discriminated unions (kind: 'a'|'b') narrow via switch."
+    ],
+    "keyPointsDe": [
+      "Nach Prüfung kennt TS den Zweigtyp.",
+      "Truthy-Prüfungen entfernen null/undefined.",
+      "Diskriminierte Unions via kind + switch."
+    ],
+    "level": 2,
+    "minutes": 5,
+    "quiz": [
+      {
+        "answer": 1,
+        "explain": "typeof string branch → string methods available.",
+        "explainDe": "typeof-string-Zweig → String-Methoden verfügbar.",
+        "options": ["number", "string", "never", "unknown"],
+        "optionsDe": ["number", "string", "never", "unknown"],
+        "q": "Inside if (typeof id === \"string\"), id is…?",
+        "qDe": "In if (typeof id === \"string\") ist id…?"
+      }
+    ],
+    "source": "handbook-v2/Narrowing",
+    "title": "Narrowing unions",
+    "titleDe": "Narrowing von Unions",
+    "tldr": "Check once, TS knows the type after.",
+    "tldrDe": "Einmal prüfen, TS kennt danach den Typ.",
+    "track": "ts-core"
+  },
+  {
+    "analogy": "Like C# optional params + overloads, but simpler: ? and defaults cover 90%.",
+    "analogyDe": "Wie optionale Parameter + Überladungen in C#, aber einfacher: ? und Defaults reichen meist.",
+    "audio": "Optional parameters with question mark. Rest params collect extras. Overloads only for special call shapes.",
+    "audioDe": "Optionale Parameter mit Fragezeichen. Rest-Parameter sammeln Extras. Overloads nur für Spezialfälle.",
+    "codeAfter": "function greet(name = \"Ada\") { return `hi ${name}`; }\nfunction sum(...nums: number[]) { return nums.reduce((a,b)=>a+b,0); }",
+    "codeBefore": "function greet(name?: string): string {\n  return `hi ${name ?? \"guest\"}`;\n}\ngreet(); // hi guest",
+    "id": "ts-functions",
+    "keyPoints": [
+      "name?: string = string | undefined.",
+      "?? gives defaults for null/undefined.",
+      "...args collects into an array."
+    ],
+    "keyPointsDe": [
+      "name?: string = string | undefined.",
+      "?? setzt Defaults bei null/undefined.",
+      "...args sammelt in Array."
+    ],
+    "level": 2,
+    "minutes": 4,
+    "quiz": [
+      {
+        "answer": 0,
+        "explain": "Default applies when arg is undefined/missing.",
+        "explainDe": "Default greift bei fehlendem/undefined Argument.",
+        "options": ["hi Ada", "hi undefined", "Error", "hi guest"],
+        "optionsDe": ["hi Ada", "hi undefined", "Fehler", "hi guest"],
+        "q": "greet() with default \"Ada\" returns…?",
+        "qDe": "greet() mit Default \"Ada\" gibt…?"
+      }
+    ],
+    "source": "handbook-v2/Functions",
+    "title": "Function params that read well",
+    "titleDe": "Gut lesbare Funktionsparameter",
+    "tldr": "? + defaults + rest cover most agent code.",
+    "tldrDe": "? + Defaults + Rest decken fast alles ab.",
+    "track": "ts-core"
+  },
+  {
+    "analogy": "Like C# generics List<T>: function identity<T>(x: T): T.",
+    "analogyDe": "Wie Generics in C# List<T>: identity<T>(x: T): T.",
+    "audio": "Generics keep the input-output link. Constrain with extends. Agents generate them for reusable helpers.",
+    "audioDe": "Generics erhalten die Ein-Aus-Beziehung. Einschränken mit extends. Agents erzeugen sie für Helfer.",
+    "codeAfter": "function first<T>(arr: T[]): T | undefined {\n  return arr[0];\n}\nconst n = first([1, 2]); // number|undefined",
+    "codeBefore": "function id<T>(x: T): T { return x; }\nconst s = id(\"hi\"); // string, not any\nfunction len<T extends { length: number }>(x: T) { return x.length; }",
+    "id": "ts-generics",
+    "keyPoints": [
+      "<T> links input to output type.",
+      "extends constrains: T extends { length: number }.",
+      "Let inference fill <T>; annotate rarely."
+    ],
+    "keyPointsDe": [
+      "<T> verbindet Ein- und Ausgabetyp.",
+      "extends schränkt ein.",
+      "Inferenz nutzen; selten annotieren."
+    ],
+    "level": 3,
+    "minutes": 5,
+    "quiz": [
+      {
+        "answer": 1,
+        "explain": "T inferred as string, so return is string.",
+        "explainDe": "T als string inferiert, Rückgabe string.",
+        "options": ["any", "string", "unknown", "never"],
+        "optionsDe": ["any", "string", "unknown", "never"],
+        "q": "id(\"hi\") returns type…?",
+        "qDe": "id(\"hi\") gibt Typ…?"
+      }
+    ],
+    "source": "handbook-v2/Generics",
+    "title": "Generics in 5 minutes",
+    "titleDe": "Generics in 5 Minuten",
+    "tldr": "<T> keeps type flowing; extends constrains.",
+    "tldrDe": "<T> erhält Typfluss; extends schränkt ein.",
+    "track": "ts-core"
+  },
+  {
+    "analogy": "| is like C# OneOf / multiple allowed types; & combines like multiple interfaces.",
+    "analogyDe": "| wie mehrere erlaubte Typen; & kombiniert wie mehrere Interfaces.",
+    "audio": "Unions list alternatives. Intersections combine. Literals restrict to exact strings.",
+    "audioDe": "Unions listen Alternativen. Intersections kombinieren. Literale schränken auf exakte Strings ein.",
+    "codeAfter": "type Status = \"ok\" | \"err\";\ntype A = { a: string } & { b: number };\nfunction f(s: Status) { /* only ok/err */ }",
+    "codeBefore": "type ID = string | number;\ntype Res = { ok: true; v: string } | { ok: false; e: string };",
+    "id": "ts-unions",
+    "keyPoints": [
+      "| = either; & = both combined.",
+      "Literal unions restrict strings (great for props).",
+      "Narrow with if/switch on discriminant."
+    ],
+    "keyPointsDe": [
+      "| = entweder; & = beides kombiniert.",
+      "Literal-Unions schränken Strings ein (gut für Props).",
+      "Narrowing via if/switch auf Diskriminante."
+    ],
+    "level": 2,
+    "minutes": 4,
+    "quiz": [
+      {
+        "answer": 2,
+        "explain": "Only declared literals are assignable.",
+        "explainDe": "Nur deklarierte Literale zuweisbar.",
+        "options": ["\"ok\"", "\"err\"", "\"oops\"", "All strings"],
+        "optionsDe": ["\"ok\"", "\"err\"", "\"oops\"", "Alle Strings"],
+        "q": "Status = \"ok\"|\"err\". Which fails?",
+        "qDe": "Status = \"ok\"|\"err\". Was scheitert?"
+      }
+    ],
+    "source": "handbook-v2/Unions",
+    "title": "Unions, intersections, literals",
+    "titleDe": "Unions, Intersections, Literale",
+    "tldr": "| = either, & = both, literals = exact values.",
+    "tldrDe": "| = entweder, & = beides, Literale = exakte Werte.",
+    "track": "ts-core"
+  },
+  {
+    "analogy": "Classes similar to C# but fields need definite assignment (! or init). public/private/protected exist.",
+    "analogyDe": "Klassen ähnlich C#, aber Felder brauchen Initialisierung (! oder init). public/private/protected existieren.",
+    "audio": "Class fields must be initialized. Use constructor shorthand with access modifiers. implements checks the shape.",
+    "audioDe": "Klassenfelder müssen initialisiert sein. Constructor-Shorthand mit Modifizierern. implements prüft Form.",
+    "codeAfter": "class P {\n  constructor(public name: string, private age = 0) {}\n  greet() { return `hi ${this.name}`; }\n}",
+    "codeBefore": "class Point {\n  x: number = 0;\n  y!: number; // assigned later\n}",
+    "id": "ts-classes",
+    "keyPoints": [
+      "Strict mode: initialize or use !.",
+      "Shorthand constructor(public x) creates fields.",
+      "implements = compile-time shape check."
+    ],
+    "keyPointsDe": [
+      "Strict: initialisieren oder !.",
+      "Shorthand erzeugt Felder.",
+      "implements = Compilezeit-Prüfung."
+    ],
+    "level": 2,
+    "minutes": 4,
+    "quiz": [
+      {
+        "answer": 0,
+        "explain": "! tells TS it will be assigned.",
+        "explainDe": "! sagt TS: wird noch zugewiesen.",
+        "options": [
+          "Assigned later, suppresses strict init error",
+          "Makes it optional",
+          "Makes it nullable",
+          "Deletes it"
+        ],
+        "optionsDe": [
+          "Wird später zugewiesen, unterdrückt Strict-Fehler",
+          "Macht optional",
+          "Macht nullable",
+          "Löscht es"
+        ],
+        "q": "y!: number means…?",
+        "qDe": "y!: number heißt…?"
+      }
+    ],
+    "source": "handbook-v2/Classes",
+    "title": "Classes without surprises",
+    "titleDe": "Klassen ohne Überraschungen",
+    "tldr": "Init fields or use !; shorthand saves lines.",
+    "tldrDe": "Felder init oder !; Shorthand spart Zeilen.",
+    "track": "ts-core"
+  },
+  {
+    "analogy": "Like C# nullable (string?) — TS has | null and | undefined plus ?.",
+    "analogyDe": "Wie Nullable in C# (string?) — TS hat | null, | undefined und ?.",
+    "audio": "Null versus undefined: null is intentional empty, undefined is missing. Optional chaining short-circuits.",
+    "audioDe": "null ist absichtlich leer, undefined fehlt. Optional Chaining kürzt ab.",
+    "codeAfter": "declare const u: { name?: string } | null;\nconst n = u?.name ?? \"guest\"; // safe",
+    "codeBefore": "let v: string | null = null;\nlet w?: string; // string | undefined\n// v.toUpperCase(); // Error: maybe null",
+    "id": "ts-null",
+    "keyPoints": [
+      "?. stops on null/undefined; ?? defaults.",
+      "! postfix asserts non-null (use sparingly).",
+      "strictNullChecks (agents enable it) forces handling."
+    ],
+    "keyPointsDe": [
+      "?. stoppt bei null/undefined; ?? Default.",
+      "! asserts non-null (sparsam).",
+      "strictNullChecks erzwingt Behandlung."
+    ],
+    "level": 2,
+    "minutes": 4,
+    "quiz": [
+      {
+        "answer": 1,
+        "explain": "?. yields undefined instead of throwing.",
+        "explainDe": "?. ergibt undefined statt zu werfen.",
+        "options": [
+          "Throws",
+          "\"guest\"",
+          "undefined (without ??) → with ?? guest",
+          "null"
+        ],
+        "optionsDe": [
+          "Wirft",
+          "\"guest\"",
+          "undefined (ohne ??) → mit ?? guest",
+          "null"
+        ],
+        "q": "null?.name gives…?",
+        "qDe": "null?.name ergibt…?"
+      }
+    ],
+    "source": "handbook-v2/Null",
+    "title": "null, undefined, ?. and ??",
+    "titleDe": "null, undefined, ?. und ??",
+    "tldr": "?. + ?? = safe navigation C# knows as ?. and ??.",
+    "tldrDe": "?. + ?? = sichere Navigation wie in C#.",
+    "track": "ts-core"
+  },
+  {
+    "analogy": "Type guards ~ C# 'is' checks returning bool; predicates x is T teach the compiler.",
+    "analogyDe": "Guards ~ C#-is-Prüfungen; Prädikate x is T belehren Compiler.",
+    "audio": "Custom guard returns x is Type. assert functions throw on failure. Agents use them for API data.",
+    "audioDe": "Guard gibt x is Typ zurück. Asserts werfen bei Fehler. Agents nutzen sie für API-Daten.",
+    "codeAfter": "function isStr(x: unknown): x is string {\n  return typeof x === \"string\";\n}",
+    "codeBefore": "function isNum(x: unknown): x is number {\n  return typeof x === \"number\";\n}\n// if (isNum(v)) v.toFixed(1); // ok",
+    "id": "ts-guards",
+    "keyPoints": [
+      "Return type `x is T` narrows callers.",
+      "Use for unknown API payloads.",
+      "asserts + zod later = runtime safety."
+    ],
+    "keyPointsDe": [
+      "Rückgabe `x is T` verengt Aufrufer.",
+      "Für unknown API-Daten.",
+      "asserts + zod = Laufzeitsicherheit."
+    ],
+    "level": 3,
+    "minutes": 4,
+    "quiz": [
+      {
+        "answer": 0,
+        "explain": "Predicate links boolean to narrowing.",
+        "explainDe": "Prädikat verbindet Boolean mit Narrowing.",
+        "options": [
+          "It narrows x to string in true-branch",
+          "It casts always",
+          "It throws",
+          "Nothing"
+        ],
+        "optionsDe": [
+          "Verengt x auf string im True-Zweig",
+          "Castet immer",
+          "Wirft",
+          "Nichts"
+        ],
+        "q": "What does `x is string` do?",
+        "qDe": "Was tut `x is string`?"
+      }
+    ],
+    "source": "handbook-v2/Narrowing+Guards",
+    "title": "Type guards (x is T)",
+    "titleDe": "Type Guards (x is T)",
+    "tldr": "Guards teach TS what your check proved.",
+    "tldrDe": "Guards sagen TS, was Prüfung bewies.",
+    "track": "ts-core"
+  },
+  {
+    "analogy": "Like LINQ Select/Where but compile-time: Partial<T>, Pick<T>, Omit<T>.",
+    "analogyDe": "Wie LINQ, aber zur Compilezeit: Partial, Pick, Omit.",
+    "audio": "Utility types transform shapes. Partial makes all optional. Pick selects keys. Readonly freezes.",
+    "audioDe": "Utility-Typen transformieren Formen. Partial macht alles optional. Pick wählt Keys. Readonly friert ein.",
+    "codeAfter": "interface U { id: string; name: string; age: number }\ntype Preview = Pick<U, \"id\" | \"name\">;\ntype Draft = Partial<U>;",
+    "codeBefore": "type Opt = Partial<{ a: string; b: number }>;\n// { a?: string; b?: number }\ntype R = Readonly<{ x: number }>;",
+    "id": "ts-utility",
+    "keyPoints": [
+      "Partial/Pick/Omit/Record cover agent edits.",
+      "Record<string, T> = typed dictionary.",
+      "NonNullable<T> strips null/undefined."
+    ],
+    "keyPointsDe": [
+      "Partial/Pick/Omit/Record = Agent-Edits.",
+      "Record<string,T> = typisiertes Dictionary.",
+      "NonNullable entfernt null/undefined."
+    ],
+    "level": 3,
+    "minutes": 4,
+    "quiz": [
+      {
+        "answer": 1,
+        "explain": "Pick keeps only listed keys.",
+        "explainDe": "Pick behält nur gelistete Keys.",
+        "options": ["All of U", "Only id+name", "Only age", "Never"],
+        "optionsDe": ["Ganz U", "Nur id+name", "Nur age", "Never"],
+        "q": "Pick<U,\"id\"|\"name\"> keeps…?",
+        "qDe": "Pick<U,\"id\"|\"name\"> behält…?"
+      }
+    ],
+    "source": "reference/Utility Types",
+    "title": "Utility types agents love",
+    "titleDe": "Utility-Typen der Agents",
+    "tldr": "Partial/Pick/Omit/Record = shape tools.",
+    "tldrDe": "Partial/Pick/Omit/Record = Form-Werkzeuge.",
+    "track": "ts-core"
+  },
+  {
+    "analogy": "Enums exist in C#; in TS prefer literal unions for props, const objects for maps.",
+    "analogyDe": "Enums wie in C#; in TS oft Literal-Unions für Props, const-Objekte für Maps.",
+    "audio": "String enums are readable. Const assertions make literal objects. Agents mix both.",
+    "audioDe": "String-Enums lesbar. Const-Assertions machen literale Objekte. Agents mischen.",
+    "codeAfter": "const Roles = { Admin: \"admin\", User: \"user\" } as const;\ntype Role = typeof Roles[keyof typeof Roles];",
+    "codeBefore": "enum Dir { Up = \"UP\", Down = \"DOWN\" }\nconst d: Dir = Dir.Up;",
+    "id": "ts-enums-literals",
+    "keyPoints": [
+      "Prefer \"a\"|\"b\" over numeric enums.",
+      "as const freezes literals.",
+      "String enums are debuggable."
+    ],
+    "keyPointsDe": [
+      "\"a\"|\"b\" statt numerischer Enums.",
+      "as const friert Literale ein.",
+      "String-Enums debugbar."
+    ],
+    "level": 2,
+    "minutes": 3,
+    "quiz": [
+      {
+        "answer": 0,
+        "explain": "as const narrows to literal types.",
+        "explainDe": "as const verengt auf Literale.",
+        "options": ["\"admin\"|\"user\"", "string", "any", "never"],
+        "optionsDe": ["\"admin\"|\"user\"", "string", "any", "never"],
+        "q": "Role type from const object is…?",
+        "qDe": "Role-Typ aus const-Objekt ist…?"
+      }
+    ],
+    "source": "handbook-v2/Enums",
+    "title": "Enums vs literals",
+    "titleDe": "Enums vs Literale",
+    "tldr": "Literals first, enums when behavior attaches.",
+    "tldrDe": "Erst Literale, Enums bei Verhalten.",
+    "track": "ts-core"
+  },
+  {
+    "analogy": "await in loops ~ foreach with await in C#; Promise.all ~ Task.WhenAll.",
+    "analogyDe": "await in Schleifen ~ foreach mit await; Promise.all ~ Task.WhenAll.",
+    "audio": "Sequential for-of with await is simple. Parallel with Promise dot all is fast. Handle errors per item.",
+    "audioDe": "Sequentiell mit for-of + await ist einfach. Parallel mit Promise.all schnell. Fehler pro Item behandeln.",
+    "codeAfter": "const ids = [1, 2, 3];\nconst users = await Promise.all(ids.map(fetchUser));",
+    "codeBefore": "for (const id of [1,2,3]) {\n  const u = await fetchUser(id);\n  console.log(u);\n}",
+    "id": "ts-async-patterns",
+    "keyPoints": [
+      "for..of + await = sequential, readable.",
+      "map + Promise.all = parallel.",
+      "Agents fetch lists in parallel — check error paths."
+    ],
+    "keyPointsDe": [
+      "for..of + await = sequentiell, lesbar.",
+      "map + Promise.all = parallel.",
+      "Agents laden parallel — Fehlerpfade prüfen."
+    ],
+    "level": 3,
+    "minutes": 4,
+    "quiz": [
+      {
+        "answer": 2,
+        "explain": "Promise.all runs all at once.",
+        "explainDe": "Promise.all läuft parallel.",
+        "options": [
+          "Sequential",
+          "Only first",
+          "Parallel, all results",
+          "Never resolves"
+        ],
+        "optionsDe": [
+          "Sequentiell",
+          "Nur erstes",
+          "Parallel, alle Ergebnisse",
+          "Resolvt nie"
+        ],
+        "q": "Promise.all([...]) is…?",
+        "qDe": "Promise.all([...]) ist…?"
+      }
+    ],
+    "source": "handbook-v2/Async",
+    "title": "Async patterns in agent code",
+    "titleDe": "Async-Muster in Agent-Code",
+    "tldr": "for-of = sequential, Promise.all = parallel.",
+    "tldrDe": "for-of = sequentiell, Promise.all = parallel.",
+    "track": "ts-core"
+  },
+  {
+    "analogy": "Like C# LINQ: map=Select, filter=Where, reduce=Aggregate, find=FirstOrDefault.",
+    "analogyDe": "Wie LINQ: map=Select, filter=Where, reduce=Aggregate, find=FirstOrDefault.",
+    "audio": "Chain map filter reduce to transform lists. Read agent pipelines left to right.",
+    "audioDe": "map, filter, reduce verketten. Agent-Pipelines links nach rechts lesen.",
+    "codeAfter": "const adults = users.filter(u => u.age >= 18).map(u => u.name);",
+    "codeBefore": "const total = [1,2,3].reduce((a,b) => a+b, 0); // 6\nconst found = [1,2,3].find(x => x > 1); // 2",
+    "id": "ts-array-methods",
+    "keyPoints": [
+      "filter→map order matters for perf.",
+      "find returns T|undefined — handle it.",
+      "reduce needs an initial value."
+    ],
+    "keyPointsDe": [
+      "Reihenfolge filter→map wichtig.",
+      "find gibt T|undefined — behandeln.",
+      "reduce braucht Startwert."
+    ],
+    "level": 2,
+    "minutes": 4,
+    "quiz": [
+      {
+        "answer": 1,
+        "explain": "No match → undefined.",
+        "explainDe": "Kein Treffer → undefined.",
+        "options": ["0", "undefined", "Error", "-1"],
+        "optionsDe": ["0", "undefined", "Fehler", "-1"],
+        "q": "[1,2].find(x => x > 9) is…?",
+        "qDe": "[1,2].find(x => x > 9) ist…?"
+      }
+    ],
+    "source": "javascript/arrays",
+    "title": "map/filter/reduce/find",
+    "titleDe": "map/filter/reduce/find",
+    "tldr": "LINQ for JS; find can be undefined.",
+    "tldrDe": "LINQ für JS; find kann undefined sein.",
+    "track": "ts-core"
+  },
+  {
+    "analogy": "Structural typing like Go interfaces / C# duck-typing via dynamic — shape matters, not name.",
+    "analogyDe": "Strukturelle Typisierung wie Go-Interfaces — Form zählt, nicht Name.",
+    "audio": "TypeScript is structural. Any matching shape is accepted. Excess property checks catch typos in literals.",
+    "audioDe": "TypeScript ist strukturell. Passende Form wird akzeptiert. Excess-Checks fangen Tippfehler ab.",
+    "codeAfter": "interface P { x: number; y: number }\nconst p = { x: 1, y: 2, z: 3 };\nconst q: P = p; // ok (z extra allowed via variable)",
+    "codeBefore": "interface Point { x: number; y: number }\nconst a: Point = { x: 1, y: 2 }; // ok\n// const b: Point = { x: 1 }; // Error: y missing",
+    "id": "ts-structural",
+    "keyPoints": [
+      "Same shape = assignable, name irrelevant.",
+      "Missing props error; extra props sometimes ok.",
+      "Object literals get strict excess checks."
+    ],
+    "keyPointsDe": [
+      "Gleiche Form = zuweisbar, Name egal.",
+      "Fehlende Props Fehler; extra teils ok.",
+      "Literale streng geprüft."
+    ],
+    "level": 3,
+    "minutes": 4,
+    "quiz": [
+      {
+        "answer": 0,
+        "explain": "Structural: shape matches.",
+        "explainDe": "Strukturell: Form passt.",
+        "options": [
+          "Accepted (structural match)",
+          "Rejected (different name)",
+          "Runtime error",
+          "Any"
+        ],
+        "optionsDe": [
+          "Akzeptiert (strukturell)",
+          "Abgelehnt (Name anders)",
+          "Laufzeitfehler",
+          "Any"
+        ],
+        "q": "class A{x=1}; interface X{x:number}; A→X?",
+        "qDe": "class A{x=1}; interface X{x:number}; A→X?"
+      }
+    ],
+    "source": "handbook-v2/Objects",
+    "title": "Structural typing (shape wins)",
+    "titleDe": "Strukturelle Typisierung",
+    "tldr": "Shape matters, not the declared name.",
+    "tldrDe": "Form zählt, nicht der Name.",
+    "track": "ts-core"
+  },
+  {
+    "analogy": "Reading a diff ~ code review in C#: look at type changes, null paths, and exported API.",
+    "analogyDe": "Diff lesen ~ Review in C#: Typänderungen, Nullpfade, exportierte API prüfen.",
+    "audio": "When agents change code, check the type signature first, then null handling, then tests. Ask what changed in the shape.",
+    "audioDe": "Bei Agent-Änderungen erst Signatur, dann Null-Behandlung, dann Tests prüfen. Fragen: Was änderte sich an der Form?",
+    "codeAfter": "// review checklist:\n// 1. signature changed? 2. null handled?\n// 3. any added? 4. exports stable?",
+    "codeBefore": "// before: (id: string) => User\n// after:  (id: string | number) => User | null\n// → callers must handle null + number!",
+    "id": "agent-reading-diffs",
+    "keyPoints": [
+      "Widened params = more callers ok; narrowed = break.",
+      "Added | null = every caller must branch.",
+      "any in diff = red flag; ask for unknown+guard."
+    ],
+    "keyPointsDe": [
+      "Weiterer Param = mehr Aufrufer ok; enger = Bruch.",
+      "| null hinzu = alle Aufrufer verzweigen.",
+      "any im Diff = Red Flag; unknown+Guard fordern."
+    ],
+    "level": 3,
+    "minutes": 4,
+    "quiz": [
+      {
+        "answer": 1,
+        "explain": "Callers now must handle null.",
+        "explainDe": "Aufrufer müssen nun null behandeln.",
+        "options": [
+          "Nothing changes",
+          "Callers must handle null",
+          "It is faster",
+          "It removes errors"
+        ],
+        "optionsDe": [
+          "Nichts ändert sich",
+          "Aufrufer müssen null behandeln",
+          "Es ist schneller",
+          "Entfernt Fehler"
+        ],
+        "q": "Return User → User|null. Impact?",
+        "qDe": "Rückgabe User → User|null. Auswirkung?"
+      }
+    ],
+    "source": "agent workflow",
+    "title": "Reading agent diffs",
+    "titleDe": "Agent-Diffs lesen",
+    "tldr": "Signature → null → any → exports.",
+    "tldrDe": "Signatur → null → any → Exporte.",
+    "track": "agent-reading"
+  },
+  {
+    "analogy": "tsconfig ~ .csproj properties: strict, target, moduleResolution.",
+    "analogyDe": "tsconfig ~ .csproj-Eigenschaften: strict, target, moduleResolution.",
+    "audio": "Agents obey tsconfig. Strict true is the goal. Know target lib and module resolution for import errors.",
+    "audioDe": "Agents gehorchen tsconfig. Strict true ist Ziel. Target und Module-Resolution für Importfehler kennen.",
+    "codeAfter": "{\n  \"compilerOptions\": {\n    \"strict\": true,\n    \"target\": \"ES2020\",\n    \"moduleResolution\": \"bundler\"\n  }\n}",
+    "codeBefore": "// strict = null checks + noImplicitAny + more\n// target = which JS version to emit\n// jsx: react-jsx for Expo/React Native",
+    "id": "agent-tsconfig",
+    "keyPoints": [
+      "strict: true catches null + implicit any.",
+      "target/lib decide available APIs.",
+      "moduleResolution bundler = Expo/Vite style."
+    ],
+    "keyPointsDe": [
+      "strict:true fängt null + implizites any.",
+      "target/lib bestimmen verfügbare APIs.",
+      "moduleResolution bundler = Expo/Vite-Stil."
+    ],
+    "level": 3,
+    "minutes": 3,
+    "quiz": [
+      {
+        "answer": 0,
+        "explain": "strict enables the family of checks.",
+        "explainDe": "strict aktiviert die Check-Familie.",
+        "options": [
+          "Enables strictNullChecks + noImplicitAny + more",
+          "Makes code run faster",
+          "Disables all errors",
+          "Only formatting"
+        ],
+        "optionsDe": [
+          "Aktiviert strictNullChecks + noImplicitAny uvm.",
+          "Macht schneller",
+          "Deaktiviert Fehler",
+          "Nur Formatierung"
+        ],
+        "q": "What does \"strict\": true do?",
+        "qDe": "Was tut \"strict\": true?"
+      }
+    ],
+    "source": "project-config/tsconfig",
+    "title": "tsconfig in 3 minutes",
+    "titleDe": "tsconfig in 3 Minuten",
+    "tldr": "strict true; target + resolution explain errors.",
+    "tldrDe": "strict true; target + Resolution erklären Fehler.",
+    "track": "agent-reading"
+  },
+  {
+    "analogy": "any ~ dynamic in C# (no checks); unknown ~ object (must cast/check).",
+    "analogyDe": "any ~ dynamic (keine Checks); unknown ~ object (muss prüfen/casten).",
+    "audio": "When agents use any, ask for unknown plus a guard. any spreads like a virus through types.",
+    "audioDe": "Wenn Agents any nutzen: unknown + Guard fordern. any verbreitet sich wie Virus.",
+    "codeAfter": "function f(x: unknown) {\n  if (typeof x === \"string\") return x.length;\n  throw new Error(\"need string\");\n}",
+    "codeBefore": "function f(x: any) { return x.length; } // no error, may crash\nfunction g(x: unknown) {\n  // return x.length; // Error: check first\n}",
+    "id": "agent-any-unknown",
+    "keyPoints": [
+      "any disables checking for whole chain.",
+      "unknown forces a check — safer default.",
+      "JSON.parse returns any → wrap to unknown."
+    ],
+    "keyPointsDe": [
+      "any deaktiviert Checks für Kette.",
+      "unknown erzwingt Prüfung — sicherer.",
+      "JSON.parse gibt any → zu unknown wrappen."
+    ],
+    "level": 2,
+    "minutes": 3,
+    "quiz": [
+      {
+        "answer": 2,
+        "explain": "unknown requires narrowing first.",
+        "explainDe": "unknown braucht erst Narrowing.",
+        "options": [
+          "It runs faster",
+          "It allows everything",
+          "Compile error until narrowed",
+          "It is deprecated"
+        ],
+        "optionsDe": [
+          "Läuft schneller",
+          "Erlaubt alles",
+          "Compile-Fehler bis Narrowing",
+          "Veraltet"
+        ],
+        "q": "x.length with x: unknown gives…?",
+        "qDe": "x.length mit x: unknown gibt…?"
+      }
+    ],
+    "source": "handbook-v2/Everyday Types",
+    "title": "\"any\" is the red flag",
+    "titleDe": "\"any\" ist Red Flag",
+    "tldr": "See any → ask for unknown + guard.",
+    "tldrDe": "any sehen → unknown + Guard fordern.",
+    "track": "agent-reading"
+  },
+  {
+    "analogy": "ESLint ~ Roslyn analyzers + StyleCop; red squiggles are build breaks in CI.",
+    "analogyDe": "ESLint ~ Roslyn-Analyzer; rote Wellen = Build-Bruch in CI.",
+    "audio": "Read errors inside out: property missing, type not assignable, possibly null. Fix the shape, not the symptom.",
+    "audioDe": "Fehler von innen lesen: Property fehlt, Typ nicht zuweisbar, evtl. null. Form fixen, nicht Symptom.",
+    "codeAfter": "// Property 'name' does not exist on type 'User'\n// → add name to interface OR fix access",
+    "codeBefore": "// Object is possibly 'null'.\n// → add if (x) or ?. or assert\n// Type 'string' is not assignable to 'number'.",
+    "id": "agent-errors",
+    "keyPoints": [
+      "possibly null → guard/?.",
+      "not assignable → wrong shape passed.",
+      "missing prop → typo or stale interface."
+    ],
+    "keyPointsDe": [
+      "possibly null → Guard/?.",
+      "not assignable → falsche Form übergeben.",
+      "missing prop → Tippfehler/veraltetes Interface."
+    ],
+    "level": 2,
+    "minutes": 3,
+    "quiz": [
+      {
+        "answer": 0,
+        "explain": "Guard, optional chain, or assert.",
+        "explainDe": "Guard, Optional Chain oder Assert.",
+        "options": [
+          "Narrow it (if/?. / ??)",
+          "Add any",
+          "Delete the file",
+          "Ignore"
+        ],
+        "optionsDe": [
+          "Verengen (if/?. / ??)",
+          "any hinzufügen",
+          "Datei löschen",
+          "Ignorieren"
+        ],
+        "q": "Fix for \"possibly null\"?",
+        "qDe": "Fix für \"possibly null\"?"
+      }
+    ],
+    "source": "agent workflow",
+    "title": "Top 3 errors agents hit",
+    "titleDe": "Top-3-Fehler der Agents",
+    "tldr": "possibly null / not assignable / missing prop.",
+    "tldrDe": "possibly null / not assignable / missing prop.",
+    "track": "agent-reading"
+  },
+  {
+    "analogy": "npm ~ NuGet; import paths ~ assembly refs; run scripts ~ MSBuild targets.",
+    "analogyDe": "npm ~ NuGet; Importpfade ~ Assembly-Refs; Scripts ~ MSBuild-Targets.",
+    "audio": "Agents add packages and imports. Check package json scripts, lockfile changes, and relative import paths.",
+    "audioDe": "Agents fügen Pakete und Imports hinzu. package.json-Scripts, Lockfile und relative Pfade prüfen.",
+    "codeAfter": "// package.json scripts:\n// \"start\": \"expo start\" — dev server\n// \"lint\": \"expo lint\" — checks",
+    "codeBefore": "import { View } from \"react-native\";\nimport { add } from \"./math\"; // same folder\nimport { add2 } from \"../lib/math\"; // up one",
+    "id": "agent-ecosystem",
+    "keyPoints": [
+      "./ = same dir, ../ = up one.",
+      "npm install changes lockfile — review it.",
+      "Scripts in package.json = what agents run."
+    ],
+    "keyPointsDe": [
+      "./ = gleicher Ordner, ../ = eins hoch.",
+      "npm install ändert Lockfile — prüfen.",
+      "Scripts = was Agents ausführen."
+    ],
+    "level": 2,
+    "minutes": 3,
+    "quiz": [
+      {
+        "answer": 1,
+        "explain": "../ goes up one directory.",
+        "explainDe": "../ geht ein Verzeichnis hoch.",
+        "options": [
+          "Same folder",
+          "Parent folder",
+          "Root always",
+          "node_modules only"
+        ],
+        "optionsDe": [
+          "Gleicher Ordner",
+          "Übergeordneter Ordner",
+          "Immer Root",
+          "Nur node_modules"
+        ],
+        "q": "\"../lib/math\" means…?",
+        "qDe": "\"../lib/math\" heißt…?"
+      }
+    ],
+    "source": "get-started/ecosystem",
+    "title": "npm, scripts & paths",
+    "titleDe": "npm, Scripts & Pfade",
+    "tldr": "./ same dir, ../ up; scripts = agent commands.",
+    "tldrDe": "./ gleich, ../ hoch; Scripts = Agent-Befehle.",
+    "track": "agent-reading"
+  }
+]
