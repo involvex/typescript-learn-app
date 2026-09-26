@@ -17,7 +17,20 @@
     "codeBefore": "let fst: (a: any, b: any) => any = (a, b) => a;\n\n   // or more precisely:\n\n   let fst: <T, U>(a: T, b: U) => T = (a, b) => a;",
     "codeAfter": "let o: { n: number; xs: object[] } = { n: 1, xs: [] };",
     "audio": "TypeScript for Functional Programmers. Learn TypeScript if you have a background in functional programming Prerequisites. Concepts not in Haskell. Concepts similar to Haskell",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"TypeScript for Functional Programmers\"?",
+        "qDe": "Welches ist ein Kernthema von „TypeScript for Functional Programmers“?",
+        "options": [
+          "Static type-checking",
+          "Class Members",
+          "The primitives: string, number, and boolean",
+          "Prerequisites"
+        ],
+        "answer": 3,
+        "explain": "Learn TypeScript if you have a background in functional programming"
+      }
+    ]
   },
   {
     "id": "auto-get-started-ts-for-oopers",
@@ -39,7 +52,20 @@
     "codeBefore": "interface Pointlike {\n  x: number;\n  y: number;\n}\ninterface Named {\n  name: string;\n}\n\nfunction logPoint(point: Pointlike) {\n  console.log(\"x = \" + point.x + \", y = \" + point.y);\n}\n\nfunction logName(x: Named) {\n  console.log(\"Hello, \" + x.name);\n}\n\nconst obj = {\n  x: 0,\n  y: 0,\n  name: \"Origin\",\n};\n\nlogPoint(obj);\nlogName(obj);",
     "codeAfter": "class Empty {}\n\nfunction fn(arg: Empty) {\n  // do something?\n}\n\n// No error, but this isn't an 'Empty' ?\nfn({ k: 10 });",
     "audio": "TypeScript for Java/C# Programmers. Learn TypeScript if you have a background in object-oriented languages Co-learning JavaScript. Rethinking the Class. OOP in TypeScript. Rethinking Types",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"TypeScript for Java/C# Programmers\"?",
+        "qDe": "Welches ist ein Kernthema von „TypeScript for Java/C# Programmers“?",
+        "options": [
+          "The primitives: string, number, and boolean",
+          "Co-learning JavaScript",
+          "Static type-checking",
+          "Class Members"
+        ],
+        "answer": 1,
+        "explain": "Learn TypeScript if you have a background in object-oriented languages"
+      }
+    ]
   },
   {
     "id": "auto-get-started-ts-for-js-programmers",
@@ -61,7 +87,20 @@
     "codeBefore": "let helloWorld = \"Hello World\";\n//  ^?",
     "codeAfter": "const user = {\n  name: \"Hayes\",\n  id: 0,\n};",
     "audio": "TypeScript for JavaScript Programmers. TypeScript stands in an unusual relationship to JavaScript. TypeScript offers all of JavaScript's features, and an additional layer on top of these: TypeScript's type system. Types by Inference. Defining Types. Composing Types. Structural Type System",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"TypeScript for JavaScript Programmers\"?",
+        "qDe": "Welches ist ein Kernthema von „TypeScript for JavaScript Programmers“?",
+        "options": [
+          "Class Members",
+          "The primitives: string, number, and boolean",
+          "Types by Inference",
+          "Static type-checking"
+        ],
+        "answer": 2,
+        "explain": "TypeScript stands in an unusual relationship to JavaScript. TypeScript offers all of JavaScript's features, and an additional layer on top of these: TypeScript's type system."
+      }
+    ]
   },
   {
     "id": "auto-get-started-ts-for-the-new-programmer",
@@ -83,7 +122,20 @@
     "codeBefore": "if (\"\" == 0) {\n    // It is! But why??\n  }\n  if (1 < x < 3) {\n    // True for *any* value of x!\n  }",
     "codeAfter": "const obj = { width: 10, height: 15 };\n  // Why is this NaN? Spelling is hard!\n  const area = obj.width * obj.heigth;",
     "audio": "TypeScript for the New Programmer. Congratulations on choosing TypeScript as one of your first languages — you're already making good decisions! What is JavaScript? A Brief History. TypeScript: A Static Type Checker. Learning JavaScript and TypeScript. Next Steps",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"TypeScript for the New Programmer\"?",
+        "qDe": "Welches ist ein Kernthema von „TypeScript for the New Programmer“?",
+        "options": [
+          "What is JavaScript? A Brief History",
+          "Static type-checking",
+          "Class Members",
+          "The primitives: string, number, and boolean"
+        ],
+        "answer": 0,
+        "explain": "Congratulations on choosing TypeScript as one of your first languages — you're already making good decisions!"
+      }
+    ]
   },
   {
     "id": "auto-javascript-creating-dts-files-from-js",
@@ -104,7 +156,20 @@
     "codeBefore": "{\n  // Change this to match your project\n  \"include\": [\"src/**/*\"],\n\n  \"compilerOptions\": {\n    // Tells TypeScript to read JS files, as\n    // normally they are ignored as source files\n    \"allowJs\": true,\n    // Generate d.ts files\n    \"declaration\": true,\n    // This compiler run should\n    // only output d.ts files\n    \"emitDeclarationOnly\": true,\n    // Types should go into this directory.\n    // Removing this would place the .d.ts files\n    // next to the .js files\n    \"outDir\": \"dist\",\n    // go to js file when using IDE functions like\n    // \"Go to Definition\" in VSCode\n    \"declarationMap\": true\n  }\n}",
     "codeAfter": "npx -p typescript tsc src/**/*.js --declaration --allowJs --emitDeclarationOnly --outDir types",
     "audio": "Creating .d.ts Files from .js files. With TypeScript 3.7, TypeScript added support for generating .d.ts files from JavaScript using JSDoc syntax. Setting up your Project to emit .d.ts files. Run the compiler. Editing the package.json. Tips",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"Creating .d.ts Files from .js files\"?",
+        "qDe": "Welches ist ein Kernthema von „Creating .d.ts Files from .js files“?",
+        "options": [
+          "Class Members",
+          "The primitives: string, number, and boolean",
+          "Setting up your Project to emit .d.ts files",
+          "Static type-checking"
+        ],
+        "answer": 2,
+        "explain": "With TypeScript 3.7, TypeScript added support for generating .d.ts files from JavaScript using JSDoc syntax."
+      }
+    ]
   },
   {
     "id": "auto-javascript-intro-to-js-with-ts",
@@ -124,7 +189,20 @@
     "codeBefore": "/** @type {number} */\nvar x;\n\nx = 0; // OK\nx = false; // OK?!",
     "codeAfter": "// @ts-check\n// @errors: 2322\n/** @type {number} */\nvar x;\n\nx = 0; // OK\nx = false; // Not OK",
     "audio": "JS Projects Utilizing TypeScript. How to add type checking to JavaScript files using TypeScript TypeScript with JavaScript. Providing Type Hints in JS via JSDoc. @ts-check",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"JS Projects Utilizing TypeScript\"?",
+        "qDe": "Welches ist ein Kernthema von „JS Projects Utilizing TypeScript“?",
+        "options": [
+          "The primitives: string, number, and boolean",
+          "TypeScript with JavaScript",
+          "Static type-checking",
+          "Class Members"
+        ],
+        "answer": 1,
+        "explain": "How to add type checking to JavaScript files using TypeScript"
+      }
+    ]
   },
   {
     "id": "auto-javascript-jsdoc-reference",
@@ -145,7 +223,20 @@
     "codeBefore": "/**\n * @type {string}\n */\nvar s;\n\n/** @type {Window} */\nvar win;\n\n/** @type {PromiseLike<string>} */\nvar promisedString;\n\n// You can specify an HTML Element with DOM properties\n/** @type {HTMLElement} */\nvar myElement = document.querySelector(selector);\nelement.dataset.myData = \"\";",
     "codeAfter": "/**\n * @type {string | boolean}\n */\nvar sb;",
     "audio": "JSDoc Reference. The list below outlines which constructs are currently supported when using JSDoc annotations to provide type information in JavaScript files. Types. Classes. Documentation. Other",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"JSDoc Reference\"?",
+        "qDe": "Welches ist ein Kernthema von „JSDoc Reference“?",
+        "options": [
+          "Types",
+          "Static type-checking",
+          "Class Members",
+          "The primitives: string, number, and boolean"
+        ],
+        "answer": 0,
+        "explain": "The list below outlines which constructs are currently supported when using JSDoc annotations to provide type information in JavaScript files."
+      }
+    ]
   },
   {
     "id": "auto-javascript-type-checking-javascript-files",
@@ -170,7 +261,20 @@
     "codeBefore": "// @checkJs\n// @errors: 2322\nclass C {\n  constructor() {\n    this.constructorOnly = 0;\n    this.constructorUnknown = undefined;\n  }\n  method() {\n    this.constructorOnly = false;\n    this.constructorUnknown = \"plunkbat\"; // ok, constructorUnknown is string | undefined\n    this.methodOnly = \"ok\"; // ok, but methodOnly could also be undefined\n  }\n  method2() {\n    this.methodOnly = true; // also, ok, methodOnly's type is string | boolean | undefined\n  }\n}",
     "codeAfter": "// @checkJs\n// @errors: 2322\nclass C {\n  constructor() {\n    /** @type {number | undefined} */\n    this.prop = undefined;\n    /** @type {number | undefined} */\n    this.count;\n  }\n}\n\nlet c = new C();\nc.prop = 0; // OK\nc.count = \"string\";",
     "audio": "Type Checking JavaScript Files. How to add type checking to JavaScript files using TypeScript Properties are inferred from assignments in class bodies. Constructor functions are equivalent to classes. CommonJS modules are supported. Classes, functions, and object literals are namespaces",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"Type Checking JavaScript Files\"?",
+        "qDe": "Welches ist ein Kernthema von „Type Checking JavaScript Files“?",
+        "options": [
+          "Static type-checking",
+          "Class Members",
+          "The primitives: string, number, and boolean",
+          "Properties are inferred from assignments in class bodies"
+        ],
+        "answer": 3,
+        "explain": "How to add type checking to JavaScript files using TypeScript"
+      }
+    ]
   },
   {
     "id": "auto-reference-advanced-types",
@@ -195,7 +299,20 @@
     "codeBefore": "// @errors: 2339\ntype Fish = { swim: () => void };\ntype Bird = { fly: () => void };\ndeclare function getSmallPet(): Fish | Bird;\n// ---cut---\nlet pet = getSmallPet();\n\n// You can use the 'in' operator to check\nif (\"swim\" in pet) {\n  pet.swim();\n}\n// However, you cannot use property access\nif (pet.fly) {\n  pet.fly();\n}",
     "codeAfter": "type Fish = { swim: () => void };\ntype Bird = { fly: () => void };\ndeclare function getSmallPet(): Fish | Bird;\n// ---cut---\nlet pet = getSmallPet();\nlet fishPet = pet as Fish;\nlet birdPet = pet as Bird;\n\nif (fishPet.swim) {\n  fishPet.swim();\n} else if (birdPet.fly) {\n  birdPet.fly();\n}",
     "audio": "Advanced Types. This page lists some of the more advanced ways in which you can model types, it works in tandem with the Utility Types doc which includes types which are included in TypeScript and available globally. Type Guards and Differentiating Types. User-Defined Type Guards. typeof type guards. instanceof type guards",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"Advanced Types\"?",
+        "qDe": "Welches ist ein Kernthema von „Advanced Types“?",
+        "options": [
+          "Class Members",
+          "The primitives: string, number, and boolean",
+          "Type Guards and Differentiating Types",
+          "Static type-checking"
+        ],
+        "answer": 2,
+        "explain": "This page lists some of the more advanced ways in which you can model types, it works in tandem with the Utility Types doc which includes types which are included in TypeScript and available globally."
+      }
+    ]
   },
   {
     "id": "auto-tutorials-angular",
@@ -213,7 +330,20 @@
     "codeBefore": "// see tutorials/Angular.md",
     "codeAfter": "",
     "audio": "Angular. Angular is a modern framework built entirely in TypeScript, and as a result, using TypeScript with Angular provides a seamless experience. ",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"Angular\"?",
+        "qDe": "Welches ist ein Kernthema von „Angular“?",
+        "options": [
+          "Static type-checking",
+          "Class Members",
+          "The primitives: string, number, and boolean",
+          "Read: Angular"
+        ],
+        "answer": 3,
+        "explain": "Angular is a modern framework built entirely in TypeScript, and as a result, using TypeScript with Angular provides a seamless experience."
+      }
+    ]
   },
   {
     "id": "auto-tutorials-asp-net-core",
@@ -238,7 +368,20 @@
     "codeBefore": "public void Configure(IApplicationBuilder app, IHostEnvironment env)\n{\n    if (env.IsDevelopment())\n    {\n        app.UseDeveloperExceptionPage();\n    }\n\n    app.UseDefaultFiles();\n    app.UseStaticFiles();\n}",
     "codeAfter": "function sayHello() {\n  const compiler = (document.getElementById(\"compiler\") as HTMLInputElement)\n    .value;\n  const framework = (document.getElementById(\"framework\") as HTMLInputElement)\n    .value;\n  return `Hello from ${compiler} and ${framework}!`;\n}",
     "audio": "ASP.NET Core. First, install ASP.NET Core if you need it. This quick-start guide requires Visual Studio 2015 or 2017. Install ASP.NET Core and TypeScript. Create a new project. Add TypeScript. Add TypeScript code",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"ASP.NET Core\"?",
+        "qDe": "Welches ist ein Kernthema von „ASP.NET Core“?",
+        "options": [
+          "Class Members",
+          "The primitives: string, number, and boolean",
+          "Install ASP.NET Core and TypeScript",
+          "Static type-checking"
+        ],
+        "answer": 2,
+        "explain": "First, install ASP.NET Core if you need it. This quick-start guide requires Visual Studio 2015 or 2017."
+      }
+    ]
   },
   {
     "id": "auto-handbook-v2-classes",
@@ -263,7 +406,60 @@
     "codeBefore": "class Point {}",
     "codeAfter": "// @strictPropertyInitialization: false\r\nclass Point {\r\n  x: number;\r\n  y: number;\r\n}\r\n\r\nconst pt = new Point();\r\npt.x = 0;\r\npt.y = 0;",
     "audio": "Classes. TypeScript offers full support for the class keyword introduced in ES2015. Class Members. Class Heritage. Member Visibility. Static Members",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which visibility modifiers do TS classes support?",
+        "qDe": "Welche Sichtbarkeiten kennen TS-Klassen?",
+        "options": [
+          "public, private, protected",
+          "Only public",
+          "internal, sealed",
+          "No modifiers at all"
+        ],
+        "optionsDe": [
+          "public, private, protected",
+          "Nur public",
+          "internal, sealed",
+          "Gar keine"
+        ],
+        "answer": 0,
+        "explain": "Like C#: public, private and protected control member visibility.",
+        "explainDe": "Wie in C#: public, private und protected steuern die Sichtbarkeit."
+      },
+      {
+        "q": "What must strict class fields have?",
+        "qDe": "Was brauchen strikte Klassenfelder?",
+        "options": [
+          "An initializer or definite assignment (!)",
+          "Nothing",
+          "Always static",
+          "A decorator"
+        ],
+        "optionsDe": [
+          "Initialisierer oder !-Assertion",
+          "Nichts",
+          "Immer static",
+          "Einen Decorator"
+        ],
+        "answer": 0,
+        "explain": "Strict mode requires initialization or `!` for later assignment.",
+        "explainDe": "Strict verlangt Initialisierung oder `!` für spätere Zuweisung."
+      }
+    ],
+    "titleDe": "Klassen",
+    "tldrDe": "Volle Unterstützung für class aus ES2015: Felder, Vererbung, Sichtbarkeit (public/private/protected), static und this-Typen.",
+    "analogyDe": "Wie Klassen in C#, aber Felder brauchen Initialisierung (! oder direkt) und this verhält sich anders.",
+    "keyPointsDe": [
+      "Klassenmitglieder",
+      "Vererbung",
+      "Sichtbarkeit",
+      "Statische Mitglieder",
+      "static-Blöcke",
+      "Generische Klassen",
+      "this zur Laufzeit",
+      "this-Typen"
+    ],
+    "audioDe": "Klassen. Felder, Vererbung, Sichtbarkeit, static und this-Typen. Felder immer initialisieren."
   },
   {
     "id": "auto-handbook-v2-conditional-types",
@@ -281,7 +477,20 @@
     "codeBefore": "interface Animal {\n  live(): void;\n}\ninterface Dog extends Animal {\n  woof(): void;\n}\n\ntype Example1 = Dog extends Animal ? number : string;\n//   ^?\n\ntype Example2 = RegExp extends Animal ? number : string;\n//   ^?",
     "codeAfter": "type SomeType = any;\ntype OtherType = any;\ntype TrueType = any;\ntype FalseType = any;\ntype Stuff =\n  // ---cut---\n  SomeType extends OtherType ? TrueType : FalseType;",
     "audio": "Conditional Types. Create types which act like if statements in the type system. Distributive Conditional Types",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"Conditional Types\"?",
+        "qDe": "Welches ist ein Kernthema von „Conditional Types“?",
+        "options": [
+          "Class Members",
+          "The primitives: string, number, and boolean",
+          "Distributive Conditional Types",
+          "Static type-checking"
+        ],
+        "answer": 2,
+        "explain": "Create types which act like if statements in the type system."
+      }
+    ]
   },
   {
     "id": "auto-handbook-v2-creating-types-from-types",
@@ -299,7 +508,20 @@
     "codeBefore": "// see handbook-v2/_Creating Types from Types.md",
     "codeAfter": "",
     "audio": "Creating Types from Types. An overview of the ways in which you can create more types from existing types. ",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"Creating Types from Types\"?",
+        "qDe": "Welches ist ein Kernthema von „Creating Types from Types“?",
+        "options": [
+          "Static type-checking",
+          "Class Members",
+          "The primitives: string, number, and boolean",
+          "Read: Creating Types from Types"
+        ],
+        "answer": 3,
+        "explain": "An overview of the ways in which you can create more types from existing types."
+      }
+    ]
   },
   {
     "id": "auto-reference-declaration-merging",
@@ -323,7 +545,20 @@
     "codeBefore": "interface Box {\n  height: number;\n  width: number;\n}\n\ninterface Box {\n  scale: number;\n}\n\nlet box: Box = { height: 5, width: 6, scale: 10 };",
     "codeAfter": "interface Cloner {\n  clone(animal: Animal): Animal;\n}\n\ninterface Cloner {\n  clone(animal: Sheep): Sheep;\n}\n\ninterface Cloner {\n  clone(animal: Dog): Dog;\n  clone(animal: Cat): Cat;\n}",
     "audio": "Declaration Merging. Some of the unique concepts in TypeScript describe the shape of JavaScript objects at the type level. One example that is especially unique to TypeScript is the concept of 'declaration merging'.… Introduction. Basic Concepts. Merging Interfaces. Merging Namespaces",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"Declaration Merging\"?",
+        "qDe": "Welches ist ein Kernthema von „Declaration Merging“?",
+        "options": [
+          "The primitives: string, number, and boolean",
+          "Introduction",
+          "Static type-checking",
+          "Class Members"
+        ],
+        "answer": 1,
+        "explain": "Some of the unique concepts in TypeScript describe the shape of JavaScript objects at the type level. One example that is especially unique to TypeScript is the concept of 'declaration merging'.…"
+      }
+    ]
   },
   {
     "id": "auto-reference-decorators",
@@ -348,7 +583,20 @@
     "codeBefore": "tsc --target ES5 --experimentalDecorators",
     "codeAfter": "{\n  \"compilerOptions\": {\n    \"target\": \"ES5\",\n    \"experimentalDecorators\": true\n  }\n}",
     "audio": "Decorators. NOTE&nbsp; This document refers to an experimental stage 2 decorators implementation. Stage 3 decorator support is available since Typescript 5.0. See: Decorators in Typescript 5.0 Introduction. Decorators. Decorator Factories. Decorator Composition",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"Decorators\"?",
+        "qDe": "Welches ist ein Kernthema von „Decorators“?",
+        "options": [
+          "Introduction",
+          "Static type-checking",
+          "Class Members",
+          "The primitives: string, number, and boolean"
+        ],
+        "answer": 0,
+        "explain": "NOTE&nbsp; This document refers to an experimental stage 2 decorators implementation. Stage 3 decorator support is available since Typescript 5.0. See: Decorators in Typescript 5.0"
+      }
+    ]
   },
   {
     "id": "auto-tutorials-dom-manipulation",
@@ -372,7 +620,20 @@
     "codeBefore": "<!DOCTYPE html>\n<html lang=\"en\">\n  <head><title>TypeScript Dom Manipulation</title></head>\n  <body>\n    <div id=\"app\"></div>\n    <!-- Assume index.js is the compiled output of index.ts -->\n    <script src=\"index.js\"></script>\n  </body>\n</html>",
     "codeAfter": "// 1. Select the div element using the id property\nconst app = document.getElementById(\"app\");\n\n// 2. Create a new <p></p> element programmatically\nconst p = document.createElement(\"p\");\n\n// 3. Add the text content\np.textContent = \"Hello, World!\";\n\n// 4. Append the p element to the div element\napp?.appendChild(p);",
     "audio": "DOM Manipulation. In the 20+ years since its standardization, JavaScript has come a very long way. While in 2020, JavaScript can be used on servers, in data science, and even on IoT devices, it is important to remember its most popular us… DOM Manipulation. Basic Example. The Document Interface. The Node interface",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"DOM Manipulation\"?",
+        "qDe": "Welches ist ein Kernthema von „DOM Manipulation“?",
+        "options": [
+          "DOM Manipulation",
+          "Static type-checking",
+          "Class Members",
+          "The primitives: string, number, and boolean"
+        ],
+        "answer": 0,
+        "explain": "In the 20+ years since its standardization, JavaScript has come a very long way. While in 2020, JavaScript can be used on servers, in data science, and even on IoT devices, it is important to remember its most popular us…"
+      }
+    ]
   },
   {
     "id": "auto-reference-enums",
@@ -397,7 +658,20 @@
     "codeBefore": "enum Direction {\n  Up = 1,\n  Down,\n  Left,\n  Right,\n}",
     "codeAfter": "enum Direction {\n  Up,\n  Down,\n  Left,\n  Right,\n}",
     "audio": "Enums. Enums are one of the few features TypeScript has which is not a type-level extension of JavaScript. Numeric enums. String enums. Heterogeneous enums. Computed and constant members",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"Enums\"?",
+        "qDe": "Welches ist ein Kernthema von „Enums“?",
+        "options": [
+          "Static type-checking",
+          "Class Members",
+          "The primitives: string, number, and boolean",
+          "Numeric enums"
+        ],
+        "answer": 3,
+        "explain": "Enums are one of the few features TypeScript has which is not a type-level extension of JavaScript."
+      }
+    ]
   },
   {
     "id": "auto-handbook-v2-everyday-types",
@@ -422,7 +696,60 @@
     "codeBefore": "let obj: any = { x: 0 };\r\n// None of the following lines of code will throw compiler errors.\r\n// Using `any` disables all further type checking, and it is assumed\r\n// you know the environment better than TypeScript.\r\nobj.foo();\r\nobj();\r\nobj.bar = 100;\r\nobj = \"hello\";\r\nconst n: number = obj;",
     "codeAfter": "let myName: string = \"Alice\";\r\n//        ^^^^^^^^ Type annotation",
     "audio": "Everyday Types. In this chapter, we'll cover some of the most common types of values you'll find in JavaScript code, and explain the corresponding ways to describe those types in TypeScript.… The primitives: string, number, and boolean. Arrays. any. Type Annotations on Variables",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "What does `let obj: any = ...` allow?",
+        "qDe": "Was erlaubt `let obj: any = ...`?",
+        "options": [
+          "Any operation without compile errors",
+          "Only numeric operations",
+          "Nothing — any is never",
+          "Only method calls"
+        ],
+        "optionsDe": [
+          "Jede Operation ohne Compile-Fehler",
+          "Nur numerische Operationen",
+          "Nichts — any ist never",
+          "Nur Methodenaufrufe"
+        ],
+        "answer": 0,
+        "explain": "any disables all further type checking — which is why agents should prefer unknown.",
+        "explainDe": "any schaltet alle weiteren Typprüfungen ab — darum sollten Agents unknown bevorzugen."
+      },
+      {
+        "q": "Which types are called 'the primitives'?",
+        "qDe": "Welche Typen heißen „die Primitiven“?",
+        "options": [
+          "string, number, boolean",
+          "Object, Array, Function",
+          "any, unknown, never",
+          "string, integer, float"
+        ],
+        "optionsDe": [
+          "string, number, boolean",
+          "Object, Array, Function",
+          "any, unknown, never",
+          "string, integer, float"
+        ],
+        "answer": 0,
+        "explain": "string, number and boolean are the primitive everyday types.",
+        "explainDe": "string, number und boolean sind die primitiven Alltagstypen."
+      }
+    ],
+    "titleDe": "Alltagstypen",
+    "tldrDe": "Die häufigsten Werttypen in JavaScript und wie man sie in TypeScript beschreibt: string, number, boolean, Arrays, Funktionen, Objekte und Unions.",
+    "analogyDe": "Wie statische Typisierung in C#, aber mit mehr Inferenz — annotieren, wo es unklar ist, sonst ableiten lassen.",
+    "keyPointsDe": [
+      "Primitive: string, number und boolean",
+      "Arrays",
+      "any (meiden!)",
+      "Typannotationen auf Variablen",
+      "Funktionen",
+      "Objekttypen",
+      "Union-Typen",
+      "Typ-Aliase"
+    ],
+    "audioDe": "Alltagstypen. Die häufigsten Werttypen und ihre Beschreibung in TypeScript. Primitive, Arrays, Funktionen, Objekte und Unions."
   },
   {
     "id": "auto-handbook-v2-generics",
@@ -447,7 +774,20 @@
     "codeBefore": "function identity(arg: number): number {\n  return arg;\n}",
     "codeAfter": "function identity(arg: any): any {\n  return arg;\n}",
     "audio": "Generics. A major part of software engineering is building components that not only have well-defined and consistent APIs, but are also reusable.… Hello World of Generics. Working with Generic Type Variables. Generic Types. Generic Classes",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"Generics\"?",
+        "qDe": "Welches ist ein Kernthema von „Generics“?",
+        "options": [
+          "The primitives: string, number, and boolean",
+          "Hello World of Generics",
+          "Static type-checking",
+          "Class Members"
+        ],
+        "answer": 1,
+        "explain": "A major part of software engineering is building components that not only have well-defined and consistent APIs, but are also reusable.…"
+      }
+    ]
   },
   {
     "id": "auto-tutorials-gulp",
@@ -468,7 +808,20 @@
     "codeBefore": "mkdir proj\ncd proj",
     "codeAfter": "proj/\n   ├─ src/\n   └─ dist/",
     "audio": "Gulp. This quick start guide will teach you how to build TypeScript with gulp and then add Browserify, terser, or Watchify to the gulp pipeline. This guide also shows how to add Babel functionality using Babelify. Minimal project. Add modules to the code. Browserify. Watchify, Babel, and Terser",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"Gulp\"?",
+        "qDe": "Welches ist ein Kernthema von „Gulp“?",
+        "options": [
+          "Static type-checking",
+          "Class Members",
+          "The primitives: string, number, and boolean",
+          "Minimal project"
+        ],
+        "answer": 3,
+        "explain": "This quick start guide will teach you how to build TypeScript with gulp and then add Browserify, terser, or Watchify to the gulp pipeline. This guide also shows how to add Babel functionality using Babelify."
+      }
+    ]
   },
   {
     "id": "auto-handbook-v2-indexed-access-types",
@@ -486,7 +839,20 @@
     "codeBefore": "type Person = { age: number; name: string; alive: boolean };\ntype Age = Person[\"age\"];\n//   ^?",
     "codeAfter": "type Person = { age: number; name: string; alive: boolean };\n// ---cut---\ntype I1 = Person[\"age\" | \"name\"];\n//   ^?\n\ntype I2 = Person[keyof Person];\n//   ^?\n\ntype AliveOrName = \"alive\" | \"name\";\ntype I3 = Person[AliveOrName];\n//   ^?",
     "audio": "Indexed Access Types. We can use an indexed access type to look up a specific property on another type: ",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"Indexed Access Types\"?",
+        "qDe": "Welches ist ein Kernthema von „Indexed Access Types“?",
+        "options": [
+          "Read: Indexed Access Types",
+          "Static type-checking",
+          "Class Members",
+          "The primitives: string, number, and boolean"
+        ],
+        "answer": 0,
+        "explain": "We can use an indexed access type to look up a specific property on another type:"
+      }
+    ]
   },
   {
     "id": "auto-reference-iterators-and-generators",
@@ -504,7 +870,20 @@
     "codeBefore": "function toArray<X>(xs: Iterable<X>): X[] {\n  return [...xs]\n}",
     "codeAfter": "let someArray = [1, \"string\", false];\n\nfor (let entry of someArray) {\n  console.log(entry); // 1, \"string\", false\n}",
     "audio": "Iterators and Generators. An object is deemed iterable if it has an implementation for the Symbol.iterator property. Some built-in types like Array, Map, Set, String, Int32Array, Uint32Array, etc. have their Symbol.… Iterables",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"Iterators and Generators\"?",
+        "qDe": "Welches ist ein Kernthema von „Iterators and Generators“?",
+        "options": [
+          "Class Members",
+          "The primitives: string, number, and boolean",
+          "Iterables",
+          "Static type-checking"
+        ],
+        "answer": 2,
+        "explain": "An object is deemed iterable if it has an implementation for the Symbol.iterator property. Some built-in types like Array, Map, Set, String, Int32Array, Uint32Array, etc. have their Symbol.…"
+      }
+    ]
   },
   {
     "id": "auto-reference-jsx",
@@ -528,7 +907,20 @@
     "codeBefore": "const foo = <Foo>bar;",
     "codeAfter": "const foo = bar as Foo;",
     "audio": "JSX. JSX is an embeddable XML-like syntax. It is meant to be transformed into valid JavaScript, though the semantics of that transformation are implementation-specific.… Basic usage. The as operator. Type Checking. The JSX result type",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"JSX\"?",
+        "qDe": "Welches ist ein Kernthema von „JSX“?",
+        "options": [
+          "The primitives: string, number, and boolean",
+          "Basic usage",
+          "Static type-checking",
+          "Class Members"
+        ],
+        "answer": 1,
+        "explain": "JSX is an embeddable XML-like syntax. It is meant to be transformed into valid JavaScript, though the semantics of that transformation are implementation-specific.…"
+      }
+    ]
   },
   {
     "id": "auto-handbook-v2-keyof-type-operator",
@@ -546,7 +938,20 @@
     "codeBefore": "type Point = { x: number; y: number };\ntype P = keyof Point;\n//   ^?",
     "codeAfter": "type Arrayish = { [n: number]: unknown };\ntype A = keyof Arrayish;\n//   ^?\n\ntype Mapish = { [k: string]: boolean };\ntype M = keyof Mapish;\n//   ^?",
     "audio": "Keyof Type Operator. The keyof operator takes an object type and produces a string or numeric literal union of its keys. The following type P is the same type as type P = \"x\" \"y\": The keyof type operator",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"Keyof Type Operator\"?",
+        "qDe": "Welches ist ein Kernthema von „Keyof Type Operator“?",
+        "options": [
+          "Static type-checking",
+          "Class Members",
+          "The primitives: string, number, and boolean",
+          "The keyof type operator"
+        ],
+        "answer": 3,
+        "explain": "The keyof operator takes an object type and produces a string or numeric literal union of its keys. The following type P is the same type as type P = \"x\" \"y\":"
+      }
+    ]
   },
   {
     "id": "auto-handbook-v2-mapped-types",
@@ -564,7 +969,20 @@
     "codeBefore": "type Horse = {};\n// ---cut---\ntype OnlyBoolsAndHorses = {\n  [key: string]: boolean | Horse;\n};\n\nconst conforms: OnlyBoolsAndHorses = {\n  del: true,\n  rodney: false,\n};",
     "codeAfter": "type OptionsFlags<Type> = {\n  [Property in keyof Type]: boolean;\n};",
     "audio": "Mapped Types. When you don't want to repeat yourself, sometimes a type needs to be based on another type. Key Remapping via as",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"Mapped Types\"?",
+        "qDe": "Welches ist ein Kernthema von „Mapped Types“?",
+        "options": [
+          "Class Members",
+          "The primitives: string, number, and boolean",
+          "Key Remapping via as",
+          "Static type-checking"
+        ],
+        "answer": 2,
+        "explain": "When you don't want to repeat yourself, sometimes a type needs to be based on another type."
+      }
+    ]
   },
   {
     "id": "auto-tutorials-migrating-from-javascript",
@@ -586,7 +1004,20 @@
     "codeBefore": "projectRoot\n├── src\n│   ├── file1.js\n│   └── file2.js\n├── built\n└── tsconfig.json",
     "codeAfter": "{\n  \"compilerOptions\": {\n    \"outDir\": \"./built\",\n    \"allowJs\": true,\n    \"target\": \"es5\"\n  },\n  \"include\": [\"./src/**/*\"]\n}",
     "audio": "Migrating from JavaScript. TypeScript doesn't exist in a vacuum. It was built with the JavaScript ecosystem in mind, and a lot of JavaScript exists today.… Setting up your Directories. Writing a Configuration File. Early Benefits. Integrating with Build Tools",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"Migrating from JavaScript\"?",
+        "qDe": "Welches ist ein Kernthema von „Migrating from JavaScript“?",
+        "options": [
+          "Class Members",
+          "The primitives: string, number, and boolean",
+          "Setting up your Directories",
+          "Static type-checking"
+        ],
+        "answer": 2,
+        "explain": "TypeScript doesn't exist in a vacuum. It was built with the JavaScript ecosystem in mind, and a lot of JavaScript exists today.…"
+      }
+    ]
   },
   {
     "id": "auto-reference-mixins",
@@ -607,7 +1038,20 @@
     "codeBefore": "class Sprite {\n  name = \"\";\n  x = 0;\n  y = 0;\n\n  constructor(name: string) {\n    this.name = name;\n  }\n}",
     "codeAfter": "// To get started, we need a type which we'll use to extend\n// other classes from. The main responsibility is to declare\n// that the type being passed in is a class.\n\ntype Constructor = new (...args: any[]) => {};\n\n// This mixin adds a scale property, with getters and setters\n// for changing it with an encapsulated private property:\n\nfunction Scale<TBase extends Constructor>(Base: TBase) {\n  return class Scaling extends Base {\n    // Mixins may not declare private/protected properties\n    // however, you can use ES2020 private fields\n    _scale = 1;\n\n    setScale(scale: number) {\n      this._scale = scale;\n    }\n\n    get scale(): number {\n      return this._scale;\n    }\n  };\n}",
     "audio": "Mixins. Along with traditional OO hierarchies, another popular way of building up classes from reusable components is to build them by combining simpler partial classes.… How Does A Mixin Work?. Constrained Mixins. Alternative Pattern. Constraints",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"Mixins\"?",
+        "qDe": "Welches ist ein Kernthema von „Mixins“?",
+        "options": [
+          "How Does A Mixin Work?",
+          "Static type-checking",
+          "Class Members",
+          "The primitives: string, number, and boolean"
+        ],
+        "answer": 0,
+        "explain": "Along with traditional OO hierarchies, another popular way of building up classes from reusable components is to build them by combining simpler partial classes.…"
+      }
+    ]
   },
   {
     "id": "auto-handbook-v2-modules",
@@ -631,7 +1075,20 @@
     "codeBefore": "// @filename: hello.ts\r\nexport default function helloWorld() {\r\n  console.log(\"Hello, world!\");\r\n}",
     "codeAfter": "// @filename: hello.ts\r\nexport default function helloWorld() {\r\n  console.log(\"Hello, world!\");\r\n}\r\n// @filename: index.ts\r\n// ---cut---\r\nimport helloWorld from \"./hello.js\";\r\nhelloWorld();",
     "audio": "Modules. How JavaScript handles communicating across file boundaries. How JavaScript Modules are Defined. Non-modules. Modules in TypeScript. CommonJS Syntax",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"Modules\"?",
+        "qDe": "Welches ist ein Kernthema von „Modules“?",
+        "options": [
+          "The primitives: string, number, and boolean",
+          "How JavaScript Modules are Defined",
+          "Static type-checking",
+          "Class Members"
+        ],
+        "answer": 1,
+        "explain": "How JavaScript handles communicating across file boundaries."
+      }
+    ]
   },
   {
     "id": "auto-handbook-v2-more-on-functions",
@@ -656,7 +1113,20 @@
     "codeBefore": "function greeter(fn: (a: string) => void) {\r\n  fn(\"Hello, World\");\r\n}\r\n\r\nfunction printToConsole(s: string) {\r\n  console.log(s);\r\n}\r\n\r\ngreeter(printToConsole);",
     "codeAfter": "type GreetFunction = (a: string) => void;\r\nfunction greeter(fn: GreetFunction) {\r\n  // ...\r\n}",
     "audio": "More on Functions. Functions are the basic building block of any application, whether they're local functions, imported from another module, or methods on a class.… Function Type Expressions. Call Signatures. Construct Signatures. Generic Functions",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"More on Functions\"?",
+        "qDe": "Welches ist ein Kernthema von „More on Functions“?",
+        "options": [
+          "Function Type Expressions",
+          "Static type-checking",
+          "Class Members",
+          "The primitives: string, number, and boolean"
+        ],
+        "answer": 0,
+        "explain": "Functions are the basic building block of any application, whether they're local functions, imported from another module, or methods on a class.…"
+      }
+    ]
   },
   {
     "id": "auto-reference-namespaces",
@@ -681,7 +1151,20 @@
     "codeBefore": "interface StringValidator {\n  isAcceptable(s: string): boolean;\n}\n\nlet lettersRegexp = /^[A-Za-z]+$/;\nlet numberRegexp = /^[0-9]+$/;\n\nclass LettersOnlyValidator implements StringValidator {\n  isAcceptable(s: string) {\n    return lettersRegexp.test(s);\n  }\n}\n\nclass ZipCodeValidator implements StringValidator {\n  isAcceptable(s: string) {\n    return s.length === 5 && numberRegexp.test(s);\n  }\n}\n\n// Some samples to try\nlet strings = [\"Hello\", \"98052\", \"101\"];\n\n// Validators to use\nlet validators: { [s: string]: StringValidator } = {};\nvalidators[\"ZIP code\"] = new ZipCodeValidator();\nvalidators[\"Letters only\"] = new LettersOnlyValidator();\n\n// Show whether each string passed each validator\nfor (let s of strings) {\n  for (let name in validators) {\n    let isMatch = validators[name].isAcceptable(s);\n    console.log(`'${s}' ${isMatch ? \"matches\" : \"does not match\"} '${name}'.`);\n  }\n}",
     "codeAfter": "namespace Validation {\n  export interface StringValidator {\n    isAcceptable(s: string): boolean;\n  }\n\n  const lettersRegexp = /^[A-Za-z]+$/;\n  const numberRegexp = /^[0-9]+$/;\n\n  export class LettersOnlyValidator implements StringValidator {\n    isAcceptable(s: string) {\n      return lettersRegexp.test(s);\n    }\n  }\n\n  export class ZipCodeValidator implements StringValidator {\n    isAcceptable(s: string) {\n      return s.length === 5 && numberRegexp.test(s);\n    }\n  }\n}\n\n// Some samples to try\nlet strings = [\"Hello\", \"98052\", \"101\"];\n\n// Validators to use\nlet validators: { [s: string]: Validation.StringValidator } = {};\nvalidators[\"ZIP code\"] = new Validation.ZipCodeValidator();\nvalidators[\"Letters only\"] = new Validation.LettersOnlyValidator();\n\n// Show whether each string passed each validator\nfor (let s of strings) {\n  for (let name in validators) {\n    console.log(\n      `\"${s}\" - ${\n        validators[name].isAcceptable(s) ? \"matches\" : \"does not match\"\n      } ${name}`\n    );\n  }\n}",
     "audio": "Namespaces. A note about terminology: It's important to note that in TypeScript 1.5, the nomenclature has changed. \"Internal modules\" are now \"namespaces\".… First steps. Validators in a single file. Namespacing. Namespaced Validators",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"Namespaces\"?",
+        "qDe": "Welches ist ein Kernthema von „Namespaces“?",
+        "options": [
+          "Class Members",
+          "The primitives: string, number, and boolean",
+          "First steps",
+          "Static type-checking"
+        ],
+        "answer": 2,
+        "explain": "A note about terminology: It's important to note that in TypeScript 1.5, the nomenclature has changed. \"Internal modules\" are now \"namespaces\".…"
+      }
+    ]
   },
   {
     "id": "auto-reference-namespaces-and-modules",
@@ -701,7 +1184,20 @@
     "codeBefore": "// In a .d.ts file or .ts file that is not a module:\n  declare module \"SomeModule\" {\n    export function fn(): string;\n  }",
     "codeAfter": "/// <reference path=\"myModules.d.ts\" />\n  import * as m from \"SomeModule\";",
     "audio": "Namespaces and Modules. How to organize code in TypeScript via modules or namespaces Using Modules. Using Namespaces. Pitfalls of Namespaces and Modules",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"Namespaces and Modules\"?",
+        "qDe": "Welches ist ein Kernthema von „Namespaces and Modules“?",
+        "options": [
+          "Static type-checking",
+          "Class Members",
+          "The primitives: string, number, and boolean",
+          "Using Modules"
+        ],
+        "answer": 3,
+        "explain": "How to organize code in TypeScript via modules or namespaces"
+      }
+    ]
   },
   {
     "id": "auto-handbook-v2-narrowing",
@@ -726,7 +1222,60 @@
     "codeBefore": "function padLeft(padding: number | string, input: string): string {\n  throw new Error(\"Not implemented yet!\");\n}",
     "codeAfter": "// @errors: 2345\nfunction padLeft(padding: number | string, input: string): string {\n  return \" \".repeat(padding) + input;\n}",
     "audio": "Narrowing. Understand how TypeScript uses JavaScript knowledge to reduce the amount of type syntax in your projects. typeof type guards. Truthiness narrowing. Equality narrowing. The in operator narrowing",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "In `if (typeof x === \"string\")`, what is x inside the branch?",
+        "qDe": "Was ist x im Zweig `if (typeof x === \"string\")`?",
+        "options": [
+          "string",
+          "number | string",
+          "any",
+          "unknown"
+        ],
+        "optionsDe": [
+          "string",
+          "number | string",
+          "any",
+          "unknown"
+        ],
+        "answer": 0,
+        "explain": "typeof guards narrow the union to string inside the true branch.",
+        "explainDe": "typeof-Guards verengen die Union im True-Zweig auf string."
+      },
+      {
+        "q": "What does padLeft(padding: number | string, ...) need before using padding?",
+        "qDe": "Was braucht padLeft(padding: number | string, ...) vor der Nutzung?",
+        "options": [
+          "A narrowing check (e.g. typeof)",
+          "Nothing — unions auto-resolve",
+          "A cast to any",
+          "Deleting the annotation"
+        ],
+        "optionsDe": [
+          "Eine Eingrenzungsprüfung (z. B. typeof)",
+          "Nichts — Unions lösen sich selbst",
+          "Ein Cast auf any",
+          "Annotation löschen"
+        ],
+        "answer": 0,
+        "explain": "A union value must be narrowed before you use members of one side.",
+        "explainDe": "Union-Werte müssen eingegrenzt werden, bevor man Seitenspezifisches nutzt."
+      }
+    ],
+    "titleDe": "Narrowing (Eingrenzung)",
+    "tldrDe": "Wie TypeScript per typeof, Truthiness, in und instanceof eine Union nach der Prüfung auf den passenden Typ eingrenzt.",
+    "analogyDe": "Wie Pattern Matching in C# mit is und switch — nur über JS-Operatoren.",
+    "keyPointsDe": [
+      "typeof-Guards",
+      "Truthiness-Eingrenzung",
+      "Gleichheits-Eingrenzung",
+      "in-Operator",
+      "instanceof",
+      "Zuweisungen",
+      "Kontrollflussanalyse",
+      "Typprädikate (x is T)"
+    ],
+    "audioDe": "Narrowing. TypeScript grenzt Union-Typen nach Prüfungen ein. typeof, in, instanceof und Typprädikate."
   },
   {
     "id": "auto-handbook-v2-object-types",
@@ -750,7 +1299,20 @@
     "codeBefore": "function greet(person: { name: string; age: number }) {\n  //                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  return \"Hello \" + person.name;\n}",
     "codeAfter": "interface Person {\n  //      ^^^^^^\n  name: string;\n  age: number;\n}\n\nfunction greet(person: Person) {\n  return \"Hello \" + person.name;\n}",
     "audio": "Object Types. In JavaScript, the fundamental way that we group and pass around data is through objects. In TypeScript, we represent those through object types. Quick Reference. Property Modifiers. Excess Property Checks. Extending Types",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"Object Types\"?",
+        "qDe": "Welches ist ein Kernthema von „Object Types“?",
+        "options": [
+          "Class Members",
+          "The primitives: string, number, and boolean",
+          "Quick Reference",
+          "Static type-checking"
+        ],
+        "answer": 2,
+        "explain": "In JavaScript, the fundamental way that we group and pass around data is through objects. In TypeScript, we represent those through object types."
+      }
+    ]
   },
   {
     "id": "auto-tutorials-react",
@@ -768,7 +1330,20 @@
     "codeBefore": "// see tutorials/React.md",
     "codeAfter": "",
     "audio": "React. TypeScript supports JSX and can correctly model the patterns used in React codebases like useState. ",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"React\"?",
+        "qDe": "Welches ist ein Kernthema von „React“?",
+        "options": [
+          "The primitives: string, number, and boolean",
+          "Read: React",
+          "Static type-checking",
+          "Class Members"
+        ],
+        "answer": 1,
+        "explain": "TypeScript supports JSX and can correctly model the patterns used in React codebases like useState."
+      }
+    ]
   },
   {
     "id": "auto-reference-symbols",
@@ -787,7 +1362,20 @@
     "codeBefore": "let sym1 = Symbol();\n\nlet sym2 = Symbol(\"key\"); // optional string key",
     "codeAfter": "let sym2 = Symbol(\"key\");\nlet sym3 = Symbol(\"key\");\n\nsym2 === sym3; // false, symbols are unique",
     "audio": "Symbols. Starting with ECMAScript 2015, symbol is a primitive data type, just like number and string. unique symbol. Well-known Symbols",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"Symbols\"?",
+        "qDe": "Welches ist ein Kernthema von „Symbols“?",
+        "options": [
+          "The primitives: string, number, and boolean",
+          "unique symbol",
+          "Static type-checking",
+          "Class Members"
+        ],
+        "answer": 1,
+        "explain": "Starting with ECMAScript 2015, symbol is a primitive data type, just like number and string."
+      }
+    ]
   },
   {
     "id": "auto-handbook-v2-template-literal-types",
@@ -805,7 +1393,20 @@
     "codeBefore": "type World = \"world\";\n\ntype Greeting = `hello ${World}`;\n//   ^?",
     "codeAfter": "type EmailLocaleIDs = \"welcome_email\" | \"email_heading\";\ntype FooterLocaleIDs = \"footer_title\" | \"footer_sendoff\";\n\ntype AllLocaleIDs = `${EmailLocaleIDs | FooterLocaleIDs}_id`;\n//   ^?",
     "audio": "Template Literal Types. Generating mapping types which change properties via template literal strings. Intrinsic String Manipulation Types",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"Template Literal Types\"?",
+        "qDe": "Welches ist ein Kernthema von „Template Literal Types“?",
+        "options": [
+          "The primitives: string, number, and boolean",
+          "Intrinsic String Manipulation Types",
+          "Static type-checking",
+          "Class Members"
+        ],
+        "answer": 1,
+        "explain": "Generating mapping types which change properties via template literal strings."
+      }
+    ]
   },
   {
     "id": "auto-handbook-v2-basics",
@@ -830,7 +1431,20 @@
     "codeBefore": "// Accessing the property 'toLowerCase'\n// on 'message' and then calling it\nmessage.toLowerCase();\n\n// Calling 'message'\nmessage();",
     "codeAfter": "const message = \"Hello World!\";",
     "audio": "The Basics. Each and every value in JavaScript has a set of behaviors you can observe from running different operations.… Static type-checking. Non-exception Failures. Types for Tooling. tsc, the TypeScript compiler",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"The Basics\"?",
+        "qDe": "Welches ist ein Kernthema von „The Basics“?",
+        "options": [
+          "Static type-checking",
+          "Class Members",
+          "The primitives: string, number, and boolean",
+          "How JavaScript Modules are Defined"
+        ],
+        "answer": 0,
+        "explain": "Each and every value in JavaScript has a set of behaviors you can observe from running different operations.…"
+      }
+    ]
   },
   {
     "id": "auto-handbook-v2-the-handbook",
@@ -850,7 +1464,20 @@
     "codeBefore": "// see handbook-v2/The Handbook.md",
     "codeAfter": "",
     "audio": "The TypeScript Handbook. Over 20 years after its introduction to the programming community, JavaScript is now one of the most widespread cross-platform languages ever created.… About this Handbook. How is this Handbook Structured. Get Started",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"The TypeScript Handbook\"?",
+        "qDe": "Welches ist ein Kernthema von „The TypeScript Handbook“?",
+        "options": [
+          "The primitives: string, number, and boolean",
+          "About this Handbook",
+          "Static type-checking",
+          "Class Members"
+        ],
+        "answer": 1,
+        "explain": "Over 20 years after its introduction to the programming community, JavaScript is now one of the most widespread cross-platform languages ever created.…"
+      }
+    ]
   },
   {
     "id": "auto-reference-triple-slash-directives",
@@ -874,7 +1501,20 @@
     "codeBefore": "/// <reference lib=\"es2017.string\" />\n\n\"foo\".padStart(4);",
     "codeAfter": "/// <amd-module name=\"NamedModule\"/>\nexport class C {}",
     "audio": "Triple-Slash Directives. Triple-slash directives are single-line comments containing a single XML tag. The contents of the comment are used as compiler directives. ///. ///. ///. ///",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"Triple-Slash Directives\"?",
+        "qDe": "Welches ist ein Kernthema von „Triple-Slash Directives“?",
+        "options": [
+          "///",
+          "Static type-checking",
+          "Class Members",
+          "The primitives: string, number, and boolean"
+        ],
+        "answer": 0,
+        "explain": "Triple-slash directives are single-line comments containing a single XML tag. The contents of the comment are used as compiler directives."
+      }
+    ]
   },
   {
     "id": "auto-reference-type-compatibility",
@@ -899,7 +1539,20 @@
     "codeBefore": "interface Pet {\n  name: string;\n}\n\nclass Dog {\n  name: string;\n}\n\nlet pet: Pet;\n// OK, because of structural typing\npet = new Dog();",
     "codeAfter": "interface Pet {\n  name: string;\n}\n\nlet pet: Pet;\n// dog's inferred type is { name: string; owner: string; }\nlet dog = { name: \"Lassie\", owner: \"Rudd Weatherwax\" };\npet = dog;",
     "audio": "Type Compatibility. Type compatibility in TypeScript is based on structural subtyping. Structural typing is a way of relating types based solely on their members. This is in contrast with nominal typing. Consider the following code: A Note on Soundness. Starting out. Comparing two functions. Enums",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"Type Compatibility\"?",
+        "qDe": "Welches ist ein Kernthema von „Type Compatibility“?",
+        "options": [
+          "Static type-checking",
+          "Class Members",
+          "The primitives: string, number, and boolean",
+          "A Note on Soundness"
+        ],
+        "answer": 3,
+        "explain": "Type compatibility in TypeScript is based on structural subtyping. Structural typing is a way of relating types based solely on their members. This is in contrast with nominal typing. Consider the following code:"
+      }
+    ]
   },
   {
     "id": "auto-handbook-v2-type-declarations",
@@ -920,7 +1573,20 @@
     "codeBefore": "// @errors: 2339\r\nconst k = Math.max(5, 6);\r\nconst j = Math.mix(7, 8);",
     "codeAfter": "npm install --save-dev @types/react",
     "audio": "Type Declarations. Throughout the sections you've read so far, we've been demonstrating basic TypeScript concepts using the built-in functions present in all JavaScript runtimes.… What Do Type Declarations Look Like?. .d.ts files. Built-in Type Definitions. External Definitions",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"Type Declarations\"?",
+        "qDe": "Welches ist ein Kernthema von „Type Declarations“?",
+        "options": [
+          "What Do Type Declarations Look Like?",
+          "Static type-checking",
+          "Class Members",
+          "The primitives: string, number, and boolean"
+        ],
+        "answer": 0,
+        "explain": "Throughout the sections you've read so far, we've been demonstrating basic TypeScript concepts using the built-in functions present in all JavaScript runtimes.…"
+      }
+    ]
   },
   {
     "id": "auto-reference-type-inference",
@@ -939,7 +1605,20 @@
     "codeBefore": "let x = 3;\n//  ^?",
     "codeAfter": "let x = [0, 1, null];\n//  ^?",
     "audio": "Type Inference. In TypeScript, there are several places where type inference is used to provide type information when there is no explicit type annotation. For example, in this code Best common type. Contextual Typing",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"Type Inference\"?",
+        "qDe": "Welches ist ein Kernthema von „Type Inference“?",
+        "options": [
+          "Class Members",
+          "The primitives: string, number, and boolean",
+          "Best common type",
+          "Static type-checking"
+        ],
+        "answer": 2,
+        "explain": "In TypeScript, there are several places where type inference is used to provide type information when there is no explicit type annotation. For example, in this code"
+      }
+    ]
   },
   {
     "id": "auto-handbook-v2-typeof-type-operator",
@@ -957,7 +1636,20 @@
     "codeBefore": "// Prints \"string\"\nconsole.log(typeof \"Hello world\");",
     "codeAfter": "let s = \"hello\";\nlet n: typeof s;\n//  ^?",
     "audio": "Typeof Type Operator. JavaScript already has a typeof operator you can use in an expression context: The typeof type operator",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"Typeof Type Operator\"?",
+        "qDe": "Welches ist ein Kernthema von „Typeof Type Operator“?",
+        "options": [
+          "The typeof type operator",
+          "Static type-checking",
+          "Class Members",
+          "The primitives: string, number, and boolean"
+        ],
+        "answer": 0,
+        "explain": "JavaScript already has a typeof operator you can use in an expression context:"
+      }
+    ]
   },
   {
     "id": "auto-tutorials-typescript-tooling-in-5-minutes",
@@ -981,7 +1673,20 @@
     "codeBefore": "> npm install -g typescript",
     "codeAfter": "// @noImplicitAny: false\nfunction greeter(person) {\n  return \"Hello, \" + person;\n}\n\nlet user = \"Jane User\";\n\ndocument.body.textContent = greeter(user);",
     "audio": "TypeScript Tooling in 5 minutes. A tutorial to understand how to create a small website with TypeScript Installing TypeScript. Building your first TypeScript file. Compiling your code. Type annotations",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"TypeScript Tooling in 5 minutes\"?",
+        "qDe": "Welches ist ein Kernthema von „TypeScript Tooling in 5 minutes“?",
+        "options": [
+          "Installing TypeScript",
+          "Static type-checking",
+          "Class Members",
+          "The primitives: string, number, and boolean"
+        ],
+        "answer": 0,
+        "explain": "A tutorial to understand how to create a small website with TypeScript"
+      }
+    ]
   },
   {
     "id": "auto-handbook-v2-understanding-errors",
@@ -1000,7 +1705,20 @@
     "codeBefore": "// @errors: 2322\r\nlet a: { m: number[] };\r\nlet b = { m: [\"\"] };\r\na = b;",
     "codeAfter": "// @errors: 2322\r\ntype A = { m: number };\r\nconst a: A = { m: 10, n: \"\" };",
     "audio": "Understanding Errors. Whenever TypeScript finds an error, it tries to explain what went wrong in as much detail as possible.… Terminology. Examples",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"Understanding Errors\"?",
+        "qDe": "Welches ist ein Kernthema von „Understanding Errors“?",
+        "options": [
+          "Static type-checking",
+          "Class Members",
+          "The primitives: string, number, and boolean",
+          "Terminology"
+        ],
+        "answer": 3,
+        "explain": "Whenever TypeScript finds an error, it tries to explain what went wrong in as much detail as possible.…"
+      }
+    ]
   },
   {
     "id": "auto-tutorials-babel-with-typescript",
@@ -1019,7 +1737,20 @@
     "codeBefore": "\"compilerOptions\": {\n  // Ensure that .d.ts files are created by tsc, but not .js files\n  \"declaration\": true,\n  \"emitDeclarationOnly\": true,\n  // Ensure that Babel can safely transpile files in the TypeScript project\n  \"isolatedModules\": true\n}",
     "codeAfter": "",
     "audio": "Using Babel with TypeScript. When making a modern JavaScript project, you might ask yourself what is the right way to convert files from TypeScript to JavaScript? Babel vs tsc for TypeScript. Babel for transpiling, tsc for types",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"Using Babel with TypeScript\"?",
+        "qDe": "Welches ist ein Kernthema von „Using Babel with TypeScript“?",
+        "options": [
+          "The primitives: string, number, and boolean",
+          "Babel vs tsc for TypeScript",
+          "Static type-checking",
+          "Class Members"
+        ],
+        "answer": 1,
+        "explain": "When making a modern JavaScript project, you might ask yourself what is the right way to convert files from TypeScript to JavaScript?"
+      }
+    ]
   },
   {
     "id": "auto-reference-utility-types",
@@ -1044,7 +1775,20 @@
     "codeBefore": "type A = Awaited<Promise<string>>;\n//   ^?\n\ntype B = Awaited<Promise<Promise<number>>>;\n//   ^?\n\ntype C = Awaited<boolean | Promise<number>>;\n//   ^?",
     "codeAfter": "interface Todo {\n  title: string;\n  description: string;\n}\n\nfunction updateTodo(todo: Todo, fieldsToUpdate: Partial<Todo>) {\n  return { ...todo, ...fieldsToUpdate };\n}\n\nconst todo1 = {\n  title: \"organize desk\",\n  description: \"clear clutter\",\n};\n\nconst todo2 = updateTodo(todo1, {\n  description: \"throw out trash\",\n});",
     "audio": "Utility Types. TypeScript provides several utility types to facilitate common type transformations. These utilities are available globally. Awaited. Partial. Required. Readonly",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"Utility Types\"?",
+        "qDe": "Welches ist ein Kernthema von „Utility Types“?",
+        "options": [
+          "The primitives: string, number, and boolean",
+          "Awaited",
+          "Static type-checking",
+          "Class Members"
+        ],
+        "answer": 1,
+        "explain": "TypeScript provides several utility types to facilitate common type transformations. These utilities are available globally."
+      }
+    ]
   },
   {
     "id": "auto-reference-variable-declarations",
@@ -1069,6 +1813,19 @@
     "codeBefore": "var a = 10;",
     "codeAfter": "function f() {\n  var message = \"Hello, world!\";\n\n  return message;\n}",
     "audio": "Variable Declaration. let and const are two relatively new concepts for variable declarations in JavaScript. As we mentioned earlier, let is similar to var in some respects, but allows users to avoid some of the common \"gotchas\" that users ru… var declarations. let declarations. const declarations. let vs. const",
-    "quiz": []
+    "quiz": [
+      {
+        "q": "Which of these is a key topic of \"Variable Declaration\"?",
+        "qDe": "Welches ist ein Kernthema von „Variable Declaration“?",
+        "options": [
+          "var declarations",
+          "Static type-checking",
+          "Class Members",
+          "The primitives: string, number, and boolean"
+        ],
+        "answer": 0,
+        "explain": "let and const are two relatively new concepts for variable declarations in JavaScript. As we mentioned earlier, let is similar to var in some respects, but allows users to avoid some of the common \"gotchas\" that users ru…"
+      }
+    ]
   }
 ]

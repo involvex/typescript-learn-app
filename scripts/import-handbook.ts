@@ -7,7 +7,7 @@
 
 import { readdirSync, readFileSync, writeFileSync, existsSync } from "node:fs";
 import { join, basename } from "node:path";
-import type { Lesson } from "../lib/types";
+import type { Lesson, QuizItem } from "../lib/types";
 
 const SRC = join(
   import.meta.dir,
@@ -20,6 +20,14 @@ const SRC = join(
   "en",
 );
 const DEST = join(import.meta.dir, "..", "content", "handbook-auto.json");
+const CURATION = join(import.meta.dir, "..", "content", "curation.json");
+
+type Override = Partial<Lesson>;
+
+function loadCuration(): Record<string, Override> {
+  if (!existsSync(CURATION)) return {};
+  return JSON.parse(readFileSync(CURATION, "utf8")) as Record<string, Override>;
+}
 
 interface DirCfg {
   track: Lesson["track"];
@@ -154,7 +162,29 @@ function fileToLesson(file: string, dir: string, cfg: DirCfg): Lesson | null {
   };
 }
 
+/** Recognition question: correct key point + 3 distractors from other pages. */
+function templateQuiz(lesson: Lesson, pool: string[], slot: number): QuizItem {
+  const correct = lesson.keyPoints[0] ?? lesson.title;
+  const distract: string[] = [];
+  for (const p of pool) {
+    if (p !== correct && !distract.includes(p) && distract.length < 3)
+      distract.push(p);
+  }
+  const options = [correct, ...distract];
+  // deterministic rotation so the answer is not always first
+  const rot = slot % options.length;
+  const rotated = options.map((_, i) => options[(i + rot) % options.length]);
+  return {
+    q: `Which of these is a key topic of "${lesson.title}"?`,
+    qDe: `Welches ist ein Kernthema von „${lesson.title}“?`,
+    options: rotated,
+    answer: rotated.indexOf(correct),
+    explain: lesson.tldr,
+  };
+}
+
 function main() {
+  const curation = loadCuration();
   const lessons: Lesson[] = [];
   for (const [dir, cfg] of Object.entries(DIRS)) {
     const files = listMd(join(SRC, dir));
@@ -162,12 +192,30 @@ function main() {
     for (const f of files) {
       const l = fileToLesson(f, dir, cfg);
       if (l) {
+        // hand-written curation (DE, quiz) survives regeneration
+        const ov = curation[l.id];
+        if (ov) Object.assign(l, ov);
         lessons.push(l);
         n++;
       }
     }
     console.log(`${dir}: ${files.length} files → ${n} lessons`);
   }
+  // template quiz for every auto lesson that has none
+  const pool = lessons.map((l) => l.keyPoints[0] ?? l.title);
+  let templated = 0;
+  lessons.forEach((l, i) => {
+    if (l.quiz.length === 0) {
+      l.quiz = [templateQuiz(l, pool, i)];
+      templated++;
+    }
+  });
+  const curated = Object.keys(curation).filter((id) =>
+    lessons.some((l) => l.id === id),
+  );
+  const stale = Object.keys(curation).filter(
+    (id) => !lessons.some((l) => l.id === id),
+  );
   lessons.sort(
     (a, b) => a.track.localeCompare(b.track) || a.title.localeCompare(b.title),
   );
@@ -176,8 +224,12 @@ function main() {
     (l) => !l.codeBefore.startsWith("// see"),
   ).length;
   console.log(
-    `Wrote ${DEST}: ${lessons.length} auto lessons (${withCode} with real code samples)`,
+    `Wrote ${DEST}: ${lessons.length} auto lessons (${withCode} with code, ${templated} template quiz, ${curated.length} curated overrides)`,
   );
+  if (stale.length > 0)
+    console.log(
+      `WARN stale curation ids (no source file): ${stale.join(", ")}`,
+    );
 }
 
 main();

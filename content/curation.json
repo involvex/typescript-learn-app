@@ -1,0 +1,160 @@
+{
+  "auto-handbook-v2-everyday-types": {
+    "titleDe": "Alltagstypen",
+    "tldrDe": "Die häufigsten Werttypen in JavaScript und wie man sie in TypeScript beschreibt: string, number, boolean, Arrays, Funktionen, Objekte und Unions.",
+    "analogyDe": "Wie statische Typisierung in C#, aber mit mehr Inferenz — annotieren, wo es unklar ist, sonst ableiten lassen.",
+    "keyPointsDe": [
+      "Primitive: string, number und boolean",
+      "Arrays",
+      "any (meiden!)",
+      "Typannotationen auf Variablen",
+      "Funktionen",
+      "Objekttypen",
+      "Union-Typen",
+      "Typ-Aliase"
+    ],
+    "audioDe": "Alltagstypen. Die häufigsten Werttypen und ihre Beschreibung in TypeScript. Primitive, Arrays, Funktionen, Objekte und Unions.",
+    "quiz": [
+      {
+        "q": "What does `let obj: any = ...` allow?",
+        "qDe": "Was erlaubt `let obj: any = ...`?",
+        "options": [
+          "Any operation without compile errors",
+          "Only numeric operations",
+          "Nothing — any is never",
+          "Only method calls"
+        ],
+        "optionsDe": [
+          "Jede Operation ohne Compile-Fehler",
+          "Nur numerische Operationen",
+          "Nichts — any ist never",
+          "Nur Methodenaufrufe"
+        ],
+        "answer": 0,
+        "explain": "any disables all further type checking — which is why agents should prefer unknown.",
+        "explainDe": "any schaltet alle weiteren Typprüfungen ab — darum sollten Agents unknown bevorzugen."
+      },
+      {
+        "q": "Which types are called 'the primitives'?",
+        "qDe": "Welche Typen heißen „die Primitiven“?",
+        "options": [
+          "string, number, boolean",
+          "Object, Array, Function",
+          "any, unknown, never",
+          "string, integer, float"
+        ],
+        "optionsDe": [
+          "string, number, boolean",
+          "Object, Array, Function",
+          "any, unknown, never",
+          "string, integer, float"
+        ],
+        "answer": 0,
+        "explain": "string, number and boolean are the primitive everyday types.",
+        "explainDe": "string, number und boolean sind die primitiven Alltagstypen."
+      }
+    ]
+  },
+  "auto-handbook-v2-narrowing": {
+    "titleDe": "Narrowing (Eingrenzung)",
+    "tldrDe": "Wie TypeScript per typeof, Truthiness, in und instanceof eine Union nach der Prüfung auf den passenden Typ eingrenzt.",
+    "analogyDe": "Wie Pattern Matching in C# mit is und switch — nur über JS-Operatoren.",
+    "keyPointsDe": [
+      "typeof-Guards",
+      "Truthiness-Eingrenzung",
+      "Gleichheits-Eingrenzung",
+      "in-Operator",
+      "instanceof",
+      "Zuweisungen",
+      "Kontrollflussanalyse",
+      "Typprädikate (x is T)"
+    ],
+    "audioDe": "Narrowing. TypeScript grenzt Union-Typen nach Prüfungen ein. typeof, in, instanceof und Typprädikate.",
+    "quiz": [
+      {
+        "q": "In `if (typeof x === \"string\")`, what is x inside the branch?",
+        "qDe": "Was ist x im Zweig `if (typeof x === \"string\")`?",
+        "options": ["string", "number | string", "any", "unknown"],
+        "optionsDe": ["string", "number | string", "any", "unknown"],
+        "answer": 0,
+        "explain": "typeof guards narrow the union to string inside the true branch.",
+        "explainDe": "typeof-Guards verengen die Union im True-Zweig auf string."
+      },
+      {
+        "q": "What does padLeft(padding: number | string, ...) need before using padding?",
+        "qDe": "Was braucht padLeft(padding: number | string, ...) vor der Nutzung?",
+        "options": [
+          "A narrowing check (e.g. typeof)",
+          "Nothing — unions auto-resolve",
+          "A cast to any",
+          "Deleting the annotation"
+        ],
+        "optionsDe": [
+          "Eine Eingrenzungsprüfung (z. B. typeof)",
+          "Nichts — Unions lösen sich selbst",
+          "Ein Cast auf any",
+          "Annotation löschen"
+        ],
+        "answer": 0,
+        "explain": "A union value must be narrowed before you use members of one side.",
+        "explainDe": "Union-Werte müssen eingegrenzt werden, bevor man Seitenspezifisches nutzt."
+      }
+    ]
+  },
+  "auto-handbook-v2-classes": {
+    "titleDe": "Klassen",
+    "tldrDe": "Volle Unterstützung für class aus ES2015: Felder, Vererbung, Sichtbarkeit (public/private/protected), static und this-Typen.",
+    "analogyDe": "Wie Klassen in C#, aber Felder brauchen Initialisierung (! oder direkt) und this verhält sich anders.",
+    "keyPointsDe": [
+      "Klassenmitglieder",
+      "Vererbung",
+      "Sichtbarkeit",
+      "Statische Mitglieder",
+      "static-Blöcke",
+      "Generische Klassen",
+      "this zur Laufzeit",
+      "this-Typen"
+    ],
+    "audioDe": "Klassen. Felder, Vererbung, Sichtbarkeit, static und this-Typen. Felder immer initialisieren.",
+    "quiz": [
+      {
+        "q": "Which visibility modifiers do TS classes support?",
+        "qDe": "Welche Sichtbarkeiten kennen TS-Klassen?",
+        "options": [
+          "public, private, protected",
+          "Only public",
+          "internal, sealed",
+          "No modifiers at all"
+        ],
+        "optionsDe": [
+          "public, private, protected",
+          "Nur public",
+          "internal, sealed",
+          "Gar keine"
+        ],
+        "answer": 0,
+        "explain": "Like C#: public, private and protected control member visibility.",
+        "explainDe": "Wie in C#: public, private und protected steuern die Sichtbarkeit."
+      },
+      {
+        "q": "What must strict class fields have?",
+        "qDe": "Was brauchen strikte Klassenfelder?",
+        "options": [
+          "An initializer or definite assignment (!)",
+          "Nothing",
+          "Always static",
+          "A decorator"
+        ],
+        "optionsDe": [
+          "Initialisierer oder !-Assertion",
+          "Nichts",
+          "Immer static",
+          "Einen Decorator"
+        ],
+        "answer": 0,
+        "explain": "Strict mode requires initialization or `!` for later assignment.",
+        "explainDe": "Strict verlangt Initialisierung oder `!` für spätere Zuweisung."
+      }
+    ]
+  }
+}
