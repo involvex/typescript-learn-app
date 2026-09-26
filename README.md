@@ -9,7 +9,8 @@ and write some TS themselves.
 - **Quiz**: mixed 10-question rounds from all lessons, offline.
 - **Review**: wrong answers land here with a tab badge — retry until cleared.
 - **Playground**: edit snippets offline, reveal what TS says; online link to TS Playground.
-- **Progress**: completions + quiz score + open reviews, stored on-device (airplane mode OK).
+- **Progress**: completions + quiz score + open reviews + daily 🔥 streak (with best),
+  stored on-device (airplane mode OK).
 - **🔊 Listen**: every lesson has a TTS audio script (EN/DE).
 - **🌙 Theme**: system / light / dark toggle in the header, persisted.
 

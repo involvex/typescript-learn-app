@@ -5,13 +5,21 @@ import { useProgress } from "@/lib/progress";
 import { useTheme } from "@/lib/theme";
 
 export default function ProgressScreen() {
-  const { t } = useLang();
+  const { lang, t } = useLang();
   const { colors } = useTheme();
-  const { doneIds, quizCorrect, quizAnswered, mistakes, resetAll } =
+  const { doneIds, quizCorrect, quizAnswered, mistakes, streak, resetAll } =
     useProgress();
   const pct = lessons.length
     ? Math.round((doneIds.length / lessons.length) * 100)
     : 0;
+  const dayWord =
+    lang === "de"
+      ? streak.count === 1
+        ? "Tag"
+        : "Tage"
+      : streak.count === 1
+        ? "day"
+        : "days";
 
   return (
     <ScrollView
@@ -36,6 +44,14 @@ export default function ProgressScreen() {
             ]}
           />
         </View>
+      </View>
+      <View style={[styles.card, { backgroundColor: colors.card }]}>
+        <Text style={[styles.big, { color: colors.text }]}>
+          🔥 {streak.count} {dayWord}
+        </Text>
+        <Text style={[styles.sub, { color: colors.sub }]}>
+          {t("bestStreak")}: {streak.best}
+        </Text>
       </View>
       <View style={[styles.card, { backgroundColor: colors.card }]}>
         <Text style={[styles.big, { color: colors.text }]}>

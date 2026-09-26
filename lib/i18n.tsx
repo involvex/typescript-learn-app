@@ -55,6 +55,7 @@ const ui = {
     cleared: "Cleared ✓",
     hardestRound: "▶ Hardest 10",
     backToReview: "← Review",
+    bestStreak: "Best",
   },
   de: {
     learn: "Lernen",
@@ -109,6 +110,7 @@ const ui = {
     cleared: "Geschafft ✓",
     hardestRound: "▶ Top 10",
     backToReview: "← Wiederholen",
+    bestStreak: "Beste",
   },
 } as const;
 

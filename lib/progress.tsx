@@ -17,22 +17,55 @@ export interface Mistake {
   misses: number;
 }
 
+export interface Streak {
+  count: number;
+  best: number;
+  /** local YYYY-MM-DD of the last day with a completion */
+  lastDay: string | null;
+}
+
+/** local-day key, immune to UTC shifts */
+function dayKey(d: Date): string {
+  const m = `${d.getMonth() + 1}`.padStart(2, "0");
+  const day = `${d.getDate()}`.padStart(2, "0");
+  return `${d.getFullYear()}-${m}-${day}`;
+}
+
+function daysBetween(a: string, b: string): number {
+  const [ay, am, ad] = a.split("-").map(Number);
+  const [by, bm, bd] = b.split("-").map(Number);
+  const da = new Date(ay, am - 1, ad, 12);
+  const db = new Date(by, bm - 1, bd, 12);
+  return Math.round((db.getTime() - da.getTime()) / 86400000);
+}
+
+function advanceStreak(s: Streak, today: string): Streak {
+  if (s.lastDay === today) return s;
+  const consecutive = s.lastDay !== null && daysBetween(s.lastDay, today) === 1;
+  const count = consecutive ? s.count + 1 : 1;
+  return { count, best: Math.max(s.best, count), lastDay: today };
+}
+
 interface ProgressState {
   doneIds: string[];
   quizCorrect: number;
   quizAnswered: number;
   mistakes: Mistake[];
+  streak: Streak;
   toggleDone: (id: string) => void;
   recordAnswer: (lessonId: string, qi: number, correct: boolean) => void;
   resetAll: () => void;
   isDone: (id: string) => boolean;
 }
 
+const EMPTY_STREAK: Streak = { count: 0, best: 0, lastDay: null };
+
 const Ctx = createContext<ProgressState>({
   doneIds: [],
   quizCorrect: 0,
   quizAnswered: 0,
   mistakes: [],
+  streak: EMPTY_STREAK,
   toggleDone: () => {},
   recordAnswer: () => {},
   resetAll: () => {},
@@ -44,6 +77,7 @@ interface Persisted {
   quizCorrect?: number;
   quizAnswered?: number;
   mistakes?: Mistake[];
+  streak?: Streak;
 }
 
 export function ProgressProvider({ children }: { children: ReactNode }) {
@@ -51,6 +85,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
   const [quizCorrect, setQuizCorrect] = useState(0);
   const [quizAnswered, setQuizAnswered] = useState(0);
   const [mistakes, setMistakes] = useState<Mistake[]>([]);
+  const [streak, setStreak] = useState<Streak>(EMPTY_STREAK);
 
   useEffect(() => {
     (async () => {
@@ -78,6 +113,17 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
                     typeof m.misses === "number" && m.misses > 0 ? m.misses : 1,
                 })),
             );
+          if (
+            p.streak &&
+            typeof p.streak.count === "number" &&
+            typeof p.streak.best === "number"
+          )
+            setStreak({
+              count: Math.max(0, p.streak.count),
+              best: Math.max(0, p.streak.best),
+              lastDay:
+                typeof p.streak.lastDay === "string" ? p.streak.lastDay : null,
+            });
         }
       } catch {
         /* offline-safe: ignore */
@@ -90,17 +136,26 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
     quizCorrect: number;
     quizAnswered: number;
     mistakes: Mistake[];
+    streak: Streak;
   }) => {
     AsyncStorage.setItem(KEY, JSON.stringify(next)).catch(() => {});
   };
 
   const toggleDone = (id: string) => {
-    setDoneIds((prev) => {
-      const next = prev.includes(id)
-        ? prev.filter((x) => x !== id)
-        : [...prev, id];
-      persist({ doneIds: next, quizCorrect, quizAnswered, mistakes });
-      return next;
+    const adding = !doneIds.includes(id);
+    const next = adding ? [...doneIds, id] : doneIds.filter((x) => x !== id);
+    setDoneIds(next);
+    // streak advances only when completing a lesson, never on unmark
+    const nextStreak = adding
+      ? advanceStreak(streak, dayKey(new Date()))
+      : streak;
+    if (adding) setStreak(nextStreak);
+    persist({
+      doneIds: next,
+      quizCorrect,
+      quizAnswered,
+      mistakes,
+      streak: nextStreak,
     });
   };
 
@@ -125,7 +180,13 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
               misses: (existing?.misses ?? 0) + 1,
             },
           ];
-      persist({ doneIds, quizCorrect: nc, quizAnswered: na, mistakes: next });
+      persist({
+        doneIds,
+        quizCorrect: nc,
+        quizAnswered: na,
+        mistakes: next,
+        streak,
+      });
       return next;
     });
   };
@@ -135,7 +196,14 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
     setQuizCorrect(0);
     setQuizAnswered(0);
     setMistakes([]);
-    persist({ doneIds: [], quizCorrect: 0, quizAnswered: 0, mistakes: [] });
+    setStreak(EMPTY_STREAK);
+    persist({
+      doneIds: [],
+      quizCorrect: 0,
+      quizAnswered: 0,
+      mistakes: [],
+      streak: EMPTY_STREAK,
+    });
   };
 
   const isDone = (id: string) => doneIds.includes(id);
@@ -147,6 +215,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
         quizCorrect,
         quizAnswered,
         mistakes,
+        streak,
         toggleDone,
         recordAnswer,
         resetAll,
