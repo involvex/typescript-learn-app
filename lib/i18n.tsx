@@ -53,6 +53,8 @@ const ui = {
     toReview: "to review",
     retry: "Try again",
     cleared: "Cleared ✓",
+    hardestRound: "▶ Hardest 10",
+    backToReview: "← Review",
   },
   de: {
     learn: "Lernen",
@@ -105,6 +107,8 @@ const ui = {
     toReview: "zum Wiederholen",
     retry: "Nochmal",
     cleared: "Geschafft ✓",
+    hardestRound: "▶ Top 10",
+    backToReview: "← Wiederholen",
   },
 } as const;
 
