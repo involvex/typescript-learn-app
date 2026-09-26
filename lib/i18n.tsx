@@ -47,6 +47,12 @@ const ui = {
     language: "Language",
     search: "Search lessons…",
     theme: "Theme (system / light / dark)",
+    review: "Review",
+    reviewHint: "Questions you missed — answer correctly to clear them.",
+    reviewEmpty: "All clear! New mistakes will land here.",
+    toReview: "to review",
+    retry: "Try again",
+    cleared: "Cleared ✓",
   },
   de: {
     learn: "Lernen",
@@ -93,6 +99,12 @@ const ui = {
     language: "Sprache",
     search: "Lektionen suchen…",
     theme: "Design (System / hell / dunkel)",
+    review: "Wiederholen",
+    reviewHint: "Verpasste Fragen — richtig beantworten zum Abhaken.",
+    reviewEmpty: "Alles klar! Neue Fehler landen hier.",
+    toReview: "zum Wiederholen",
+    retry: "Nochmal",
+    cleared: "Geschafft ✓",
   },
 } as const;
 

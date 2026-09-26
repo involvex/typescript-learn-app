@@ -7,7 +7,8 @@ import { useTheme } from "@/lib/theme";
 export default function ProgressScreen() {
   const { t } = useLang();
   const { colors } = useTheme();
-  const { doneIds, quizCorrect, quizAnswered, resetAll } = useProgress();
+  const { doneIds, quizCorrect, quizAnswered, mistakes, resetAll } =
+    useProgress();
   const pct = lessons.length
     ? Math.round((doneIds.length / lessons.length) * 100)
     : 0;
@@ -42,6 +43,9 @@ export default function ProgressScreen() {
         </Text>
         <Text style={[styles.sub, { color: colors.sub }]}>
           {t("quizScore")}
+        </Text>
+        <Text style={[styles.sub, { color: colors.sub }]}>
+          {mistakes.length} {t("toReview")}
         </Text>
       </View>
       <Text style={[styles.note, { color: colors.sub }]}>

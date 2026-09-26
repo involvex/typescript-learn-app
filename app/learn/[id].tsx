@@ -14,7 +14,7 @@ export default function LessonDetail() {
   const { id } = useLocalSearchParams<{ id: string }>();
   const { lang, t } = useLang();
   const { colors } = useTheme();
-  const { toggleDone, isDone, recordQuiz } = useProgress();
+  const { toggleDone, isDone } = useProgress();
   const router = useRouter();
   const [speaking, setSpeaking] = useState(false);
 
@@ -117,12 +117,13 @@ export default function LessonDetail() {
       {lesson.quiz.length > 0 ? (
         <>
           <Text style={styles.h}>{t("quizInLesson")}</Text>
-          {lesson.quiz.map((q) => (
+          {lesson.quiz.map((q, qi) => (
             <QuizCard
               key={q.q}
               quiz={q}
               lang={lang}
-              onAnswer={(ok) => recordQuiz(ok)}
+              lessonId={lesson.id}
+              qi={qi}
             />
           ))}
         </>

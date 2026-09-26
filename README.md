@@ -4,12 +4,14 @@ Offline-first Expo app to learn TypeScript on the go. Built for a programmer
 (C#, C++, Python, PHP background) who wants to **read what AI agents generate**
 and write some TS themselves.
 
-- **Learn**: 24 bite-size lessons (JS crash → TS core → reading agent diffs),
+- **Learn**: 73 lessons (24 curated + 49 handbook, JS crash → TS core → agent diffs),
   each with TL;DR, C# lens, code, and quiz. German/English toggle (EN/DE, top right).
 - **Quiz**: mixed 10-question rounds from all lessons, offline.
+- **Review**: wrong answers land here with a tab badge — retry until cleared.
 - **Playground**: edit snippets offline, reveal what TS says; online link to TS Playground.
-- **Progress**: completions + quiz score stored on-device (works in airplane mode).
+- **Progress**: completions + quiz score + open reviews, stored on-device (airplane mode OK).
 - **🔊 Listen**: every lesson has a TTS audio script (EN/DE).
+- **🌙 Theme**: system / light / dark toggle in the header, persisted.
 
 ## Run it (2 min)
 

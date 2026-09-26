@@ -9,12 +9,19 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const KEY = "ts-guide-progress-v1";
 
+export interface Mistake {
+  lessonId: string;
+  qi: number;
+  at: number;
+}
+
 interface ProgressState {
   doneIds: string[];
   quizCorrect: number;
   quizAnswered: number;
+  mistakes: Mistake[];
   toggleDone: (id: string) => void;
-  recordQuiz: (correct: boolean) => void;
+  recordAnswer: (lessonId: string, qi: number, correct: boolean) => void;
   resetAll: () => void;
   isDone: (id: string) => boolean;
 }
@@ -23,31 +30,43 @@ const Ctx = createContext<ProgressState>({
   doneIds: [],
   quizCorrect: 0,
   quizAnswered: 0,
+  mistakes: [],
   toggleDone: () => {},
-  recordQuiz: () => {},
+  recordAnswer: () => {},
   resetAll: () => {},
   isDone: () => false,
 });
+
+interface Persisted {
+  doneIds?: string[];
+  quizCorrect?: number;
+  quizAnswered?: number;
+  mistakes?: Mistake[];
+}
 
 export function ProgressProvider({ children }: { children: ReactNode }) {
   const [doneIds, setDoneIds] = useState<string[]>([]);
   const [quizCorrect, setQuizCorrect] = useState(0);
   const [quizAnswered, setQuizAnswered] = useState(0);
+  const [mistakes, setMistakes] = useState<Mistake[]>([]);
 
   useEffect(() => {
     (async () => {
       try {
         const raw = await AsyncStorage.getItem(KEY);
         if (raw) {
-          const p = JSON.parse(raw) as {
-            doneIds?: string[];
-            quizCorrect?: number;
-            quizAnswered?: number;
-          };
+          const p = JSON.parse(raw) as Persisted;
           if (Array.isArray(p.doneIds)) setDoneIds(p.doneIds);
           if (typeof p.quizCorrect === "number") setQuizCorrect(p.quizCorrect);
           if (typeof p.quizAnswered === "number")
             setQuizAnswered(p.quizAnswered);
+          if (Array.isArray(p.mistakes))
+            setMistakes(
+              p.mistakes.filter(
+                (m) =>
+                  typeof m?.lessonId === "string" && typeof m?.qi === "number",
+              ),
+            );
         }
       } catch {
         /* offline-safe: ignore */
@@ -59,6 +78,7 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
     doneIds: string[];
     quizCorrect: number;
     quizAnswered: number;
+    mistakes: Mistake[];
   }) => {
     AsyncStorage.setItem(KEY, JSON.stringify(next)).catch(() => {});
   };
@@ -68,24 +88,34 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
       const next = prev.includes(id)
         ? prev.filter((x) => x !== id)
         : [...prev, id];
-      persist({ doneIds: next, quizCorrect, quizAnswered });
+      persist({ doneIds: next, quizCorrect, quizAnswered, mistakes });
       return next;
     });
   };
 
-  const recordQuiz = (correct: boolean) => {
+  const recordAnswer = (lessonId: string, qi: number, correct: boolean) => {
     const nc = quizCorrect + (correct ? 1 : 0);
     const na = quizAnswered + 1;
     setQuizCorrect(nc);
     setQuizAnswered(na);
-    persist({ doneIds, quizCorrect: nc, quizAnswered: na });
+    setMistakes((prev) => {
+      const without = prev.filter(
+        (m) => !(m.lessonId === lessonId && m.qi === qi),
+      );
+      const next = correct
+        ? without
+        : [...without, { lessonId, qi, at: Date.now() }];
+      persist({ doneIds, quizCorrect: nc, quizAnswered: na, mistakes: next });
+      return next;
+    });
   };
 
   const resetAll = () => {
     setDoneIds([]);
     setQuizCorrect(0);
     setQuizAnswered(0);
-    persist({ doneIds: [], quizCorrect: 0, quizAnswered: 0 });
+    setMistakes([]);
+    persist({ doneIds: [], quizCorrect: 0, quizAnswered: 0, mistakes: [] });
   };
 
   const isDone = (id: string) => doneIds.includes(id);
@@ -96,8 +126,9 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
         doneIds,
         quizCorrect,
         quizAnswered,
+        mistakes,
         toggleDone,
-        recordQuiz,
+        recordAnswer,
         resetAll,
         isDone,
       }}

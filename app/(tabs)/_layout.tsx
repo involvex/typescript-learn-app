@@ -4,6 +4,7 @@ import { LangToggle } from "@/components/LangToggle";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { useTheme } from "@/lib/theme";
 import { useLang } from "@/lib/i18n";
+import { useProgress } from "@/lib/progress";
 
 function HeaderRight() {
   return (
@@ -24,6 +25,7 @@ function HeaderRight() {
 export default function TabLayout() {
   const { colors } = useTheme();
   const { t } = useLang();
+  const { mistakes } = useProgress();
   return (
     <Tabs
       screenOptions={{
@@ -40,6 +42,13 @@ export default function TabLayout() {
     >
       <Tabs.Screen name="index" options={{ title: t("learn") }} />
       <Tabs.Screen name="quiz" options={{ title: t("quiz") }} />
+      <Tabs.Screen
+        name="review"
+        options={{
+          title: t("review"),
+          tabBarBadge: mistakes.length > 0 ? mistakes.length : undefined,
+        }}
+      />
       <Tabs.Screen name="playground" options={{ title: t("playground") }} />
       <Tabs.Screen name="progress" options={{ title: t("progress") }} />
       <Tabs.Screen name="two" options={{ href: null }} />

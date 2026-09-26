@@ -4,13 +4,11 @@ import { QuizCard } from "@/components/QuizCard";
 import { getLesson, quizPool } from "@/lib/content";
 import { tx } from "@/lib/types";
 import { useLang } from "@/lib/i18n";
-import { useProgress } from "@/lib/progress";
 import { useTheme } from "@/lib/theme";
 
 export default function QuizScreen() {
   const { lang, t } = useLang();
   const { colors } = useTheme();
-  const { recordQuiz } = useProgress();
   const pool = useMemo(() => quizPool(), []);
   const [idx, setIdx] = useState(0);
   const [round, setRound] = useState(0);
@@ -49,7 +47,8 @@ export default function QuizScreen() {
           key={`${entry.lessonId}-${entry.qi}-${round}`}
           quiz={quiz}
           lang={lang}
-          onAnswer={(ok) => recordQuiz(ok)}
+          lessonId={entry.lessonId}
+          qi={entry.qi}
         />
       ) : null}
       <View style={styles.row}>
