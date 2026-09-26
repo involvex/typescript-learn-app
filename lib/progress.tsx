@@ -13,6 +13,8 @@ export interface Mistake {
   lessonId: string;
   qi: number;
   at: number;
+  /** how many times this question was missed (for hardest-first ordering) */
+  misses: number;
 }
 
 interface ProgressState {
@@ -62,10 +64,19 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
             setQuizAnswered(p.quizAnswered);
           if (Array.isArray(p.mistakes))
             setMistakes(
-              p.mistakes.filter(
-                (m) =>
-                  typeof m?.lessonId === "string" && typeof m?.qi === "number",
-              ),
+              p.mistakes
+                .filter(
+                  (m) =>
+                    typeof m?.lessonId === "string" &&
+                    typeof m?.qi === "number",
+                )
+                .map((m) => ({
+                  lessonId: m.lessonId as string,
+                  qi: m.qi as number,
+                  at: typeof m.at === "number" ? m.at : Date.now(),
+                  misses:
+                    typeof m.misses === "number" && m.misses > 0 ? m.misses : 1,
+                })),
             );
         }
       } catch {
@@ -99,12 +110,21 @@ export function ProgressProvider({ children }: { children: ReactNode }) {
     setQuizCorrect(nc);
     setQuizAnswered(na);
     setMistakes((prev) => {
+      const existing = prev.find((m) => m.lessonId === lessonId && m.qi === qi);
       const without = prev.filter(
         (m) => !(m.lessonId === lessonId && m.qi === qi),
       );
       const next = correct
         ? without
-        : [...without, { lessonId, qi, at: Date.now() }];
+        : [
+            ...without,
+            {
+              lessonId,
+              qi,
+              at: Date.now(),
+              misses: (existing?.misses ?? 0) + 1,
+            },
+          ];
       persist({ doneIds, quizCorrect: nc, quizAnswered: na, mistakes: next });
       return next;
     });

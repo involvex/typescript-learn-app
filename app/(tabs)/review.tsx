@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ScrollView, StyleSheet, Text } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { QuizCard } from "@/components/QuizCard";
 import { getLesson } from "@/lib/content";
 import { tx } from "@/lib/types";
@@ -13,12 +13,15 @@ export default function ReviewScreen() {
   const { mistakes } = useProgress();
   const [clearedMsg, setClearedMsg] = useState<string | null>(null);
 
-  // drop stale refs (content regenerations may move questions around)
-  const items = mistakes.flatMap((m) => {
-    const lesson = getLesson(m.lessonId);
-    const quiz = lesson?.quiz[m.qi];
-    return lesson && quiz ? [{ ...m, lesson, quiz }] : [];
-  });
+  // drop stale refs (content regenerations may move questions around),
+  // hardest-first: most misses, ties broken by oldest miss
+  const items = mistakes
+    .flatMap((m) => {
+      const lesson = getLesson(m.lessonId);
+      const quiz = lesson?.quiz[m.qi];
+      return lesson && quiz ? [{ ...m, lesson, quiz }] : [];
+    })
+    .sort((a, b) => b.misses - a.misses || a.at - b.at);
 
   return (
     <ScrollView
@@ -41,18 +44,24 @@ export default function ReviewScreen() {
           {t("reviewEmpty")}
         </Text>
       ) : (
-        items.map(({ lessonId, qi, lesson, quiz }) => (
-          <QuizCard
-            key={`${lessonId}-${qi}`}
-            quiz={quiz}
-            lang={lang}
-            lessonId={lessonId}
-            qi={qi}
-            retry
-            onAnswer={(ok) => {
-              if (ok) setClearedMsg(tx(lesson, lang, "title"));
-            }}
-          />
+        items.map(({ lessonId, qi, misses, lesson, quiz }) => (
+          <View key={`${lessonId}-${qi}`}>
+            <Text style={[styles.misses, { color: colors.sub }]}>
+              {lang === "de"
+                ? `${misses}× verpasst · ${tx(lesson, lang, "title")}`
+                : `missed ${misses}× · ${tx(lesson, lang, "title")}`}
+            </Text>
+            <QuizCard
+              quiz={quiz}
+              lang={lang}
+              lessonId={lessonId}
+              qi={qi}
+              retry
+              onAnswer={(ok) => {
+                if (ok) setClearedMsg(tx(lesson, lang, "title"));
+              }}
+            />
+          </View>
         ))
       )}
     </ScrollView>
@@ -65,4 +74,5 @@ const styles = StyleSheet.create({
   hint: { fontSize: 14, marginBottom: 8 },
   cleared: { fontSize: 15, fontWeight: "700", marginBottom: 8 },
   empty: { fontSize: 15, marginTop: 24, textAlign: "center" },
+  misses: { fontSize: 12, fontWeight: "700", marginTop: 8 },
 });
