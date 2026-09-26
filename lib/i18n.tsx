@@ -46,6 +46,7 @@ const ui = {
     switchToEnglish: "EN",
     language: "Language",
     search: "Search lessons…",
+    theme: "Theme (system / light / dark)",
   },
   de: {
     learn: "Lernen",
@@ -91,6 +92,7 @@ const ui = {
     switchToEnglish: "EN",
     language: "Sprache",
     search: "Lektionen suchen…",
+    theme: "Design (System / hell / dunkel)",
   },
 } as const;
 

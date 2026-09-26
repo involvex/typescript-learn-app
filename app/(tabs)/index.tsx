@@ -10,12 +10,14 @@ import {
 import { LessonCard } from "@/components/LessonCard";
 import { lessonsByTrack, searchLessons } from "@/lib/content";
 import { useLang } from "@/lib/i18n";
+import { useTheme } from "@/lib/theme";
 import type { Lesson } from "@/lib/types";
 
 type Filter = "all" | Lesson["track"];
 
 export default function LearnScreen() {
   const { lang, t } = useLang();
+  const { colors } = useTheme();
   const [filter, setFilter] = useState<Filter>("all");
   const [q, setQ] = useState("");
 
@@ -34,28 +36,48 @@ export default function LearnScreen() {
   ];
 
   return (
-    <View style={styles.wrap}>
+    <View style={[styles.wrap, { backgroundColor: colors.background }]}>
       <TextInput
         value={q}
         onChangeText={setQ}
         placeholder={t("search")}
-        style={styles.search}
+        placeholderTextColor={colors.sub}
+        style={[
+          styles.search,
+          {
+            backgroundColor: colors.input,
+            color: colors.text,
+            borderColor: colors.border,
+            borderWidth: 1,
+          },
+        ]}
         autoCapitalize="none"
       />
       <View style={styles.chips}>
-        {filters.map((f) => (
-          <Pressable
-            key={f.id}
-            onPress={() => setFilter(f.id)}
-            style={[styles.chip, filter === f.id && styles.chipActive]}
-          >
-            <Text
-              style={[styles.chipTxt, filter === f.id && styles.chipTxtActive]}
+        {filters.map((f) => {
+          const active = filter === f.id;
+          return (
+            <Pressable
+              key={f.id}
+              onPress={() => setFilter(f.id)}
+              style={[
+                styles.chip,
+                { backgroundColor: colors.chip },
+                active && { backgroundColor: colors.primary },
+              ]}
             >
-              {f.label}
-            </Text>
-          </Pressable>
-        ))}
+              <Text
+                style={[
+                  styles.chipTxt,
+                  { color: colors.chipText },
+                  active && { color: colors.onPrimary },
+                ]}
+              >
+                {f.label}
+              </Text>
+            </Pressable>
+          );
+        })}
       </View>
       <FlatList
         data={data}
@@ -68,9 +90,8 @@ export default function LearnScreen() {
 }
 
 const styles = StyleSheet.create({
-  wrap: { flex: 1, backgroundColor: "#f1f5f9" },
+  wrap: { flex: 1 },
   search: {
-    backgroundColor: "#fff",
     margin: 12,
     marginBottom: 4,
     borderRadius: 10,
@@ -84,13 +105,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 12,
     paddingVertical: 8,
   },
-  chip: {
-    backgroundColor: "#e2e8f0",
-    borderRadius: 16,
-    paddingHorizontal: 12,
-    paddingVertical: 7,
-  },
-  chipActive: { backgroundColor: "#3178c6" },
-  chipTxt: { color: "#334155", fontWeight: "600" },
-  chipTxtActive: { color: "#fff" },
+  chip: { borderRadius: 16, paddingHorizontal: 12, paddingVertical: 7 },
+  chipTxt: { fontWeight: "600" },
 });

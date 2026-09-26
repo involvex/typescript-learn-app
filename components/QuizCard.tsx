@@ -3,6 +3,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import type { Lang } from "../lib/types";
 import type { QuizItem } from "../lib/types";
 import { qx, qxList } from "../lib/types";
+import { useTheme } from "../lib/theme";
 
 export function QuizCard({
   quiz,
@@ -14,6 +15,7 @@ export function QuizCard({
   onAnswer?: (correct: boolean) => void;
 }) {
   const [picked, setPicked] = useState<number | null>(null);
+  const { colors } = useTheme();
   const q = qx(quiz, lang, "q");
   const options = qxList(quiz, lang);
   const explain = qx(quiz, lang, "explain");
@@ -25,8 +27,8 @@ export function QuizCard({
   };
 
   return (
-    <View style={styles.box}>
-      <Text style={styles.q}>{q}</Text>
+    <View style={[styles.box, { backgroundColor: colors.quizBox }]}>
+      <Text style={[styles.q, { color: colors.text }]}>{q}</Text>
       {options.map((opt, i) => {
         const isAnswer = i === quiz.answer;
         const isPicked = i === picked;
@@ -36,16 +38,25 @@ export function QuizCard({
             onPress={() => pick(i)}
             style={[
               styles.opt,
-              picked !== null && isAnswer && styles.optCorrect,
-              isPicked && !isAnswer && styles.optWrong,
+              { backgroundColor: colors.card, borderColor: colors.border },
+              picked !== null &&
+                isAnswer && {
+                  borderColor: colors.success,
+                  backgroundColor: colors.successBg,
+                },
+              isPicked &&
+                !isAnswer && {
+                  borderColor: colors.danger,
+                  backgroundColor: colors.dangerBg,
+                },
             ]}
           >
-            <Text style={styles.optText}>{opt}</Text>
+            <Text style={[styles.optText, { color: colors.text }]}>{opt}</Text>
           </Pressable>
         );
       })}
       {picked !== null ? (
-        <Text style={styles.explain}>
+        <Text style={[styles.explain, { color: colors.sub }]}>
           {picked === quiz.answer ? "✅ " : "❌ "}
           {explain}
         </Text>
@@ -55,25 +66,16 @@ export function QuizCard({
 }
 
 const styles = StyleSheet.create({
-  box: {
-    backgroundColor: "#f8fafc",
-    borderRadius: 12,
-    padding: 14,
-    marginVertical: 8,
-  },
+  box: { borderRadius: 12, padding: 14, marginVertical: 8 },
   q: { fontSize: 16, fontWeight: "700", marginBottom: 10 },
   opt: {
-    backgroundColor: "#fff",
     borderRadius: 10,
     padding: 14,
     marginVertical: 5,
     borderWidth: 1,
-    borderColor: "#e2e8f0",
     minHeight: 52,
     justifyContent: "center",
   },
-  optCorrect: { borderColor: "#22c55e", backgroundColor: "#f0fdf4" },
-  optWrong: { borderColor: "#ef4444", backgroundColor: "#fef2f2" },
   optText: { fontSize: 15 },
-  explain: { marginTop: 8, fontSize: 14, color: "#334155" },
+  explain: { marginTop: 8, fontSize: 14 },
 });

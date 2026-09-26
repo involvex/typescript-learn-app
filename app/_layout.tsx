@@ -6,6 +6,7 @@ import "react-native-reanimated";
 
 import { LanguageProvider } from "@/lib/i18n";
 import { ProgressProvider } from "@/lib/progress";
+import { ThemeProvider } from "@/lib/theme";
 
 export { ErrorBoundary } from "expo-router";
 
@@ -37,10 +38,12 @@ export default function RootLayout() {
   return (
     <LanguageProvider>
       <ProgressProvider>
-        <Stack>
-          <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-          <Stack.Screen name="modal" options={{ presentation: "modal" }} />
-        </Stack>
+        <ThemeProvider>
+          <Stack>
+            <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+            <Stack.Screen name="modal" options={{ presentation: "modal" }} />
+          </Stack>
+        </ThemeProvider>
       </ProgressProvider>
     </LanguageProvider>
   );

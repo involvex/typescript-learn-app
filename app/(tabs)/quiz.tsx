@@ -5,9 +5,11 @@ import { getLesson, quizPool } from "@/lib/content";
 import { tx } from "@/lib/types";
 import { useLang } from "@/lib/i18n";
 import { useProgress } from "@/lib/progress";
+import { useTheme } from "@/lib/theme";
 
 export default function QuizScreen() {
   const { lang, t } = useLang();
+  const { colors } = useTheme();
   const { recordQuiz } = useProgress();
   const pool = useMemo(() => quizPool(), []);
   const [idx, setIdx] = useState(0);
@@ -34,11 +36,11 @@ export default function QuizScreen() {
 
   return (
     <ScrollView
-      style={styles.wrap}
+      style={[styles.wrap, { backgroundColor: colors.background }]}
       contentContainerStyle={{ padding: 16, paddingBottom: 40 }}
     >
-      <Text style={styles.sub}>{t("quizAll")}</Text>
-      <Text style={styles.count}>
+      <Text style={[styles.sub, { color: colors.sub }]}>{t("quizAll")}</Text>
+      <Text style={[styles.count, { color: colors.text }]}>
         {t("questionOf")} {(idx % order.length) + 1} / {order.length}
         {lesson ? ` · ${tx(lesson, lang, "title")}` : ""}
       </Text>
@@ -53,9 +55,11 @@ export default function QuizScreen() {
       <View style={styles.row}>
         <Pressable
           onPress={() => setIdx((i) => (i > 0 ? i - 1 : 0))}
-          style={[styles.btn, styles.btnGhost]}
+          style={[styles.btn, { backgroundColor: colors.chip }]}
         >
-          <Text style={styles.btnTxt}>{t("prev")}</Text>
+          <Text style={[styles.btnTxt, { color: colors.text }]}>
+            {t("prev")}
+          </Text>
         </Pressable>
         <Pressable
           onPress={() => {
@@ -66,9 +70,11 @@ export default function QuizScreen() {
               setIdx((i) => i + 1);
             }
           }}
-          style={styles.btn}
+          style={[styles.btn, { backgroundColor: colors.primary }]}
         >
-          <Text style={[styles.btnTxt, styles.btnTxtWhite]}>{t("next")}</Text>
+          <Text style={[styles.btnTxt, { color: colors.onPrimary }]}>
+            {t("next")}
+          </Text>
         </Pressable>
       </View>
     </ScrollView>
@@ -76,18 +82,10 @@ export default function QuizScreen() {
 }
 
 const styles = StyleSheet.create({
-  wrap: { flex: 1, backgroundColor: "#fff" },
-  sub: { fontSize: 14, color: "#64748b", marginBottom: 4 },
+  wrap: { flex: 1 },
+  sub: { fontSize: 14, marginBottom: 4 },
   count: { fontSize: 16, fontWeight: "700", marginBottom: 8 },
   row: { flexDirection: "row", gap: 10, marginTop: 12 },
-  btn: {
-    flex: 1,
-    backgroundColor: "#3178c6",
-    borderRadius: 12,
-    padding: 16,
-    alignItems: "center",
-  },
-  btnGhost: { backgroundColor: "#e2e8f0" },
-  btnTxt: { fontSize: 16, fontWeight: "700", color: "#0f172a" },
-  btnTxtWhite: { color: "#fff" },
+  btn: { flex: 1, borderRadius: 12, padding: 16, alignItems: "center" },
+  btnTxt: { fontSize: 16, fontWeight: "700" },
 });

@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { CodeBlock } from "@/components/CodeBlock";
 import { useLang } from "@/lib/i18n";
+import { useTheme } from "@/lib/theme";
 
 const SNIPPETS = [
   {
@@ -40,6 +41,7 @@ const SNIPPETS = [
 
 export default function PlaygroundScreen() {
   const { lang, t } = useLang();
+  const { colors } = useTheme();
   const [sel, setSel] = useState(0);
   const [edited, setEdited] = useState(SNIPPETS[0].code);
   const [revealed, setRevealed] = useState(false);
@@ -52,23 +54,40 @@ export default function PlaygroundScreen() {
 
   return (
     <ScrollView
-      style={styles.wrap}
+      style={[styles.wrap, { backgroundColor: colors.background }]}
       contentContainerStyle={{ padding: 16, paddingBottom: 40 }}
     >
-      <Text style={styles.title}>{t("playgroundTitle")}</Text>
-      <Text style={styles.hint}>{t("playgroundHint")}</Text>
+      <Text style={[styles.title, { color: colors.text }]}>
+        {t("playgroundTitle")}
+      </Text>
+      <Text style={[styles.hint, { color: colors.sub }]}>
+        {t("playgroundHint")}
+      </Text>
       <View style={styles.chips}>
-        {SNIPPETS.map((s, i) => (
-          <Pressable
-            key={s.id}
-            onPress={() => pick(i)}
-            style={[styles.chip, sel === i && styles.chipActive]}
-          >
-            <Text style={[styles.chipTxt, sel === i && styles.chipTxtActive]}>
-              {s.id}
-            </Text>
-          </Pressable>
-        ))}
+        {SNIPPETS.map((s, i) => {
+          const active = sel === i;
+          return (
+            <Pressable
+              key={s.id}
+              onPress={() => pick(i)}
+              style={[
+                styles.chip,
+                { backgroundColor: colors.chip },
+                active && { backgroundColor: colors.primary },
+              ]}
+            >
+              <Text
+                style={[
+                  styles.chipTxt,
+                  { color: colors.chipText },
+                  active && { color: colors.onPrimary },
+                ]}
+              >
+                {s.id}
+              </Text>
+            </Pressable>
+          );
+        })}
       </View>
       <TextInput
         value={edited}
@@ -81,47 +100,57 @@ export default function PlaygroundScreen() {
         autoCorrect={false}
         style={styles.editor}
       />
-      <Pressable onPress={() => setRevealed(true)} style={styles.btn}>
-        <Text style={styles.btnTxt}>{t("run")}</Text>
+      <Pressable
+        onPress={() => setRevealed(true)}
+        style={[styles.btn, { backgroundColor: colors.primary }]}
+      >
+        <Text style={[styles.btnTxt, { color: colors.onPrimary }]}>
+          {t("run")}
+        </Text>
       </Pressable>
       {revealed ? (
-        <View style={styles.answer}>
-          <Text style={styles.answerTxt}>
+        <View
+          style={[
+            styles.answer,
+            {
+              backgroundColor: colors.successBg,
+              borderColor: colors.success,
+            },
+          ]}
+        >
+          <Text style={[styles.answerTxt, { color: colors.text }]}>
             {lang === "de" ? SNIPPETS[sel].answerDe : SNIPPETS[sel].answerEn}
           </Text>
         </View>
       ) : null}
-      <Text style={styles.origLabel}>Original:</Text>
+      <Text style={[styles.origLabel, { color: colors.text }]}>Original:</Text>
       <CodeBlock code={SNIPPETS[sel].code} />
       <Pressable
         onPress={() =>
           Linking.openURL("https://www.typescriptlang.org/play").catch(() => {})
         }
-        style={[styles.btn, styles.btnGhost]}
+        style={[styles.btn, { backgroundColor: colors.chip }]}
       >
-        <Text style={styles.btnGhostTxt}>{t("openOnline")}</Text>
+        <Text style={[styles.btnTxt, { color: colors.text }]}>
+          {t("openOnline")}
+        </Text>
       </Pressable>
       <Pressable onPress={() => pick(sel)} style={styles.reset}>
-        <Text style={styles.resetTxt}>{t("reset")}</Text>
+        <Text style={[styles.resetTxt, { color: colors.sub }]}>
+          {t("reset")}
+        </Text>
       </Pressable>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  wrap: { flex: 1, backgroundColor: "#fff" },
+  wrap: { flex: 1 },
   title: { fontSize: 20, fontWeight: "800", marginBottom: 6 },
-  hint: { fontSize: 14, color: "#475569", marginBottom: 10 },
+  hint: { fontSize: 14, marginBottom: 10 },
   chips: { flexDirection: "row", gap: 8, marginBottom: 10 },
-  chip: {
-    backgroundColor: "#e2e8f0",
-    borderRadius: 16,
-    paddingHorizontal: 12,
-    paddingVertical: 7,
-  },
-  chipActive: { backgroundColor: "#3178c6" },
-  chipTxt: { fontWeight: "700", color: "#334155" },
-  chipTxtActive: { color: "#fff" },
+  chip: { borderRadius: 16, paddingHorizontal: 12, paddingVertical: 7 },
+  chipTxt: { fontWeight: "700" },
   editor: {
     backgroundColor: "#0d1117",
     color: "#e6edf3",
@@ -132,26 +161,11 @@ const styles = StyleSheet.create({
     minHeight: 160,
     textAlignVertical: "top",
   },
-  btn: {
-    backgroundColor: "#3178c6",
-    borderRadius: 12,
-    padding: 16,
-    alignItems: "center",
-    marginTop: 12,
-  },
-  btnTxt: { color: "#fff", fontWeight: "700", fontSize: 16 },
-  btnGhost: { backgroundColor: "#e2e8f0" },
-  btnGhostTxt: { fontWeight: "700", color: "#0f172a" },
-  answer: {
-    backgroundColor: "#f0fdf4",
-    borderColor: "#22c55e",
-    borderWidth: 1,
-    borderRadius: 10,
-    padding: 12,
-    marginTop: 12,
-  },
-  answerTxt: { fontSize: 14, color: "#14532d" },
+  btn: { borderRadius: 12, padding: 16, alignItems: "center", marginTop: 12 },
+  btnTxt: { fontWeight: "700", fontSize: 16 },
+  answer: { borderWidth: 1, borderRadius: 10, padding: 12, marginTop: 12 },
+  answerTxt: { fontSize: 14 },
   origLabel: { marginTop: 16, fontWeight: "700" },
   reset: { marginTop: 10, alignItems: "center", padding: 10 },
-  resetTxt: { color: "#64748b", fontWeight: "600" },
+  resetTxt: { fontWeight: "600" },
 });
